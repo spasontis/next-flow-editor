@@ -1,0 +1,59 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+  scrollbar-color: hsl(from var(--content-2) h s l / 40%) transparent;
+}
+
+body {
+  font-family: "Geologica Variable", sans-serif;
+  scroll-behavior: smooth;
+  line-height: normal;
+  overflow-wrap: anywhere;
+  min-block-size: 100vh;
+  -webkit-tap-highlight-color: transparent;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+img,
+picture,
+video,
+canvas {
+  inline-size: 100%;
+  block-size: auto;
+  display: block;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+}
+
+button {
+  appearance: none;
+  cursor: pointer;
+}
