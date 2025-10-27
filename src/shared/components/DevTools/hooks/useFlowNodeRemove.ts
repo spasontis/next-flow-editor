@@ -1,9 +1,6 @@
-import { Edge, Node } from "@xyflow/react";
 import { useCallback } from "react";
 
-type SetSelectedNode = React.Dispatch<React.SetStateAction<Node | undefined>>;
-type SetNodes = React.Dispatch<React.SetStateAction<Node[]>>;
-type SetEdges = React.Dispatch<React.SetStateAction<Edge[]>>;
+import { SetSelectedNode, SetNodes, SetEdges, Node } from "@/shared/types";
 
 export const useFlowNodeRemove = (
   selectedNode: Node | undefined,

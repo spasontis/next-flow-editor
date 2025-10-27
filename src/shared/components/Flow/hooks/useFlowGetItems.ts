@@ -1,7 +1,4 @@
-import { type Node, type Edge } from "@xyflow/react";
-
-type SetNodes = React.Dispatch<React.SetStateAction<Node[]>>;
-type SetEdges = React.Dispatch<React.SetStateAction<Edge[]>>;
+import { SetEdges, SetNodes, Node } from "@/shared/types";
 
 export const getItems = (
   setNodes: SetNodes,

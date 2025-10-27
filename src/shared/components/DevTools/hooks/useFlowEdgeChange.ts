@@ -1,7 +1,6 @@
-import { Edge } from "@xyflow/react";
 import { useCallback } from "react";
 
-type SetEdges = React.Dispatch<React.SetStateAction<Edge[]>>;
+import { Edge, SetEdges } from "@/shared/types";
 
 export const useFlowEdgeChange = (
   selectedEdge: Edge | undefined,
