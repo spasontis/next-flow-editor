@@ -35,7 +35,7 @@ export const DevTools = ({
   setNodes: SetNodes;
   setEdges: SetEdges;
 }) => {
-  const { toastMessage, showToast } = useShowToast();
+  const { toastMessage, toastColor, showToast } = useShowToast();
 
   const saveFlow = useFlowSave({ nodes, edges });
   const restoreFlow = useFlowRestore(setNodes, setEdges);
@@ -50,22 +50,22 @@ export const DevTools = ({
 
   const onSave = () => {
     saveFlow();
-    showToast("Success Save");
+    showToast("Success saved", "green");
   };
 
   const onRemoveNode = () => {
     removeNode();
-    showToast("Node removed");
+    showToast("Node removed", "red");
   };
 
   const onChangeEdge = () => {
     changeEdgeStyle();
-    showToast("EdgeChanged");
+    showToast("Edge changed", "default");
   };
 
   const onRestore = () => {
     restoreFlow();
-    showToast("Flow restored");
+    showToast("Flow restored", "red");
   };
 
   return (
@@ -84,17 +84,18 @@ export const DevTools = ({
             Change
           </button>
         )}
-        <button className={clsx(styles.button, styles.save)} onClick={onSave}>
+        <button className={clsx(styles.button, styles.green)} onClick={onSave}>
           Save
         </button>
-        <button
-          className={clsx(styles.button, styles.restore)}
-          onClick={onRestore}
-        >
+        <button className={clsx(styles.button, styles.red)} onClick={onRestore}>
           Restore
         </button>
       </Panel>
-      {toastMessage && <div className={styles.toast}>{toastMessage}</div>}{" "}
+      {toastMessage && (
+        <div className={clsx(styles.toast, styles[toastColor])}>
+          {toastMessage}
+        </div>
+      )}
       <NodeInspector />
       <ViewportLogger />
     </>
