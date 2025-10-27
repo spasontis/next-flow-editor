@@ -1,10 +1,6 @@
-import {
-  type Node,
-  type Edge,
-  XYPosition,
-  FinalConnectionState,
-} from "@xyflow/react";
 import { useCallback } from "react";
+
+import { Node, Edge, FinalConnectionState, XYPosition } from "@/shared/types";
 import { getNewEdge, getNewNode } from "../actions";
 
 type SetNodes = React.Dispatch<React.SetStateAction<Node[]>>;

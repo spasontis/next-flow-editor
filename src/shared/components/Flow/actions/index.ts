@@ -1,14 +1,11 @@
-import { Node, Edge } from "@xyflow/react";
-
-interface getNewNodeParams {
-  id: string;
-  position: { x: number; y: number };
-}
-interface GetNewEdgeParams {
-  id: string;
-  sourceId: string;
-  targetId?: string;
-}
+import {
+  Node,
+  Edge,
+  GetNewEdgeParams,
+  getNewNodeParams,
+  SetSelectedEdge,
+  SetSelectedNode,
+} from "@/shared/types";
 
 export const getNewNode = ({ id, position }: getNewNodeParams): Node => {
   return {
@@ -36,9 +33,6 @@ export const getNewEdge = ({
     style: { stroke: "#772DF6" },
   };
 };
-
-type SetSelectedNode = React.Dispatch<React.SetStateAction<Node | undefined>>;
-type SetSelectedEdge = React.Dispatch<React.SetStateAction<Edge | undefined>>;
 
 export const resetSelected = (
   setSelectedNode: SetSelectedNode,

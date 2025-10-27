@@ -1,12 +1,8 @@
-import { type Edge, type Node } from "@xyflow/react";
 import { useCallback } from "react";
 
-interface UseFlowSaveProps {
-  nodes: Node[];
-  edges: Edge[];
-}
+import { FlowProps } from "@/shared/types";
 
-export const useFlowSave = ({ nodes, edges }: UseFlowSaveProps) => {
+export const useFlowSave = ({ nodes, edges }: FlowProps) => {
   const onSave = useCallback(() => {
     const flowData = {
       nodes,
