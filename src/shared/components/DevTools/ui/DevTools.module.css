@@ -14,11 +14,15 @@
   }
 }
 
-.save {
+.default {
+  background-color: var(--background-color-3);
+}
+
+.green {
   background-color: var(--green-500);
 }
 
-.restore {
+.red {
   background-color: var(--red-500);
 }
 
@@ -26,7 +30,6 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: var(--green-500);
   color: white;
   padding: 10px 20px;
   border-radius: 5px;

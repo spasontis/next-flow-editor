@@ -4,10 +4,8 @@ export const DEFAULT_NODES = [
     position: { x: 0, y: 0 },
     data: { label: "start" },
     style: {
-      background: "none",
-      backgroundColor: "transparent",
       color: "#fff",
-      border: "2px solid #61dafb",
+      border: "2px solid #772df6",
       borderRadius: 8,
       padding: 10,
       cursor: "pointer",

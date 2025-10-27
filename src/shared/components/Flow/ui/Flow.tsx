@@ -15,12 +15,13 @@ import {
 import "@xyflow/react/dist/style.css";
 
 import { DevTools } from "@/shared/components/DevTools";
+import { CustomNode } from "@/shared/components/CustomNode";
 
 import { useFlowConnect, useFlowConnectEnd } from "../hooks";
-import { resetSelected } from "../actions";
+
+import { getItems, resetSelected } from "../actions";
 
 import styles from "./Flow.module.css";
-import { getItems } from "../hooks/useFlowGetItems";
 
 export const Flow = () => {
   const proOptions = { hideAttribution: true };
@@ -49,9 +50,13 @@ export const Flow = () => {
 
   useEffect(() => {
     getItems(setNodes, setEdges, idRef);
-  }, []);
+  }, [setNodes, setEdges]);
 
   const onClick = resetSelected(setSelectedNode, setSelectedEdge);
+
+  const nodeTypes = {
+    customNode: CustomNode,
+  };
 
   return (
     <div className={styles.roadmap} ref={reactFlowWrapper}>
@@ -63,6 +68,7 @@ export const Flow = () => {
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         onConnectEnd={onConnectEnd}
+        nodeTypes={nodeTypes}
         onNodeClick={(event, node) => onClick({ node })}
         onEdgeClick={(event, edge) => onClick({ edge })}
         onPaneClick={() => onClick({})}
