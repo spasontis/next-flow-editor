@@ -14,14 +14,13 @@ import {
 
 import "@xyflow/react/dist/style.css";
 
-import { NodeInspector } from "@/shared/components/NodeIncpector";
-import { ViewportLogger } from "@/shared/components/ViewPortLogger";
+import { DevTools } from "@/shared/components/DevTools";
 
 import { useFlowConnect, useFlowConnectEnd } from "../hooks";
-
 import { resetSelected } from "../actions";
 
 import styles from "./Flow.module.css";
+import { getItems } from "../hooks/useFlowGetItems";
 
 export const Flow = () => {
   const proOptions = { hideAttribution: true };
@@ -33,23 +32,7 @@ export const Flow = () => {
   const [selectedNode, setSelectedNode] = useState<Node | undefined>(undefined);
   const [selectedEdge, setSelectedEdge] = useState<Edge | undefined>(undefined);
 
-  const idRef = useRef(1);
-
-  useEffect(() => {
-    const flowData = localStorage.getItem("myFlowData");
-    if (flowData) {
-      const { nodes: savedNodes, edges: savedEdges } = JSON.parse(flowData);
-
-      setNodes(savedNodes);
-      setEdges(savedEdges);
-
-      const maxId = savedNodes.reduce(
-        (max: 10, node: Node) => Math.max(max, Number(node.id)),
-        0
-      );
-      idRef.current = maxId + 1;
-    }
-  }, [setNodes, setEdges]);
+  const idRef = useRef<number>(1);
 
   const nodeOrigin: [number, number] = [0.5, 0];
 
@@ -61,7 +44,12 @@ export const Flow = () => {
     setNodes,
     setEdges,
     screenToFlowPosition,
+    idRef,
   });
+
+  useEffect(() => {
+    getItems(setNodes, setEdges, idRef);
+  }, []);
 
   const onClick = resetSelected(setSelectedNode, setSelectedEdge);
 
@@ -83,9 +71,16 @@ export const Flow = () => {
         fitViewOptions={{ padding: 2 }}
         nodeOrigin={nodeOrigin}
       >
+        <DevTools
+          selectedNode={selectedNode}
+          selectedEdge={selectedEdge}
+          setSelectedNode={setSelectedNode}
+          nodes={nodes}
+          edges={edges}
+          setNodes={setNodes}
+          setEdges={setEdges}
+        />
         <Background />
-        <NodeInspector />
-        <ViewportLogger />
       </ReactFlow>
     </div>
   );

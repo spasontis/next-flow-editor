@@ -4,7 +4,7 @@ import {
   XYPosition,
   FinalConnectionState,
 } from "@xyflow/react";
-import { useCallback, useRef } from "react";
+import { useCallback } from "react";
 import { getNewEdge, getNewNode } from "../actions";
 
 type SetNodes = React.Dispatch<React.SetStateAction<Node[]>>;
@@ -14,22 +14,20 @@ interface UseFlowConnectEndParams {
   setNodes: SetNodes;
   setEdges: SetEdges;
   screenToFlowPosition: (pos: XYPosition) => XYPosition;
-  initialId?: number;
+  idRef: React.RefObject<number>;
 }
 
 export const useFlowConnectEnd = ({
   setNodes,
   setEdges,
   screenToFlowPosition,
-  initialId = 1,
+  idRef,
 }: UseFlowConnectEndParams) => {
-  const idRef = useRef(initialId ?? 1);
-
-  const getId = () => {
+  const getId = useCallback(() => {
     const newId = idRef.current;
     idRef.current += 1;
     return `${newId}`;
-  };
+  }, [idRef]);
 
   const onConnectEnd = useCallback(
     (event: MouseEvent | TouchEvent, connectionState: FinalConnectionState) => {
@@ -53,7 +51,7 @@ export const useFlowConnectEnd = ({
         setEdges((eds) => eds.concat(newEdge));
       }
     },
-    [screenToFlowPosition, setNodes, setEdges]
+    [screenToFlowPosition, setNodes, setEdges, getId]
   );
   return onConnectEnd;
 };
