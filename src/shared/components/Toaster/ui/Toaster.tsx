@@ -1,13 +1,13 @@
 import clsx from "clsx";
 
-import styles from "./Toast.module.css";
+import styles from "./Toaster.module.css";
 
 interface ToastProps {
   toastMessage: string;
   toastColor: string;
 }
 
-export const Toast = ({ toastMessage, toastColor }: ToastProps) => {
+export const Toaster = ({ toastMessage, toastColor }: ToastProps) => {
   return (
     <>
       {toastMessage && (
