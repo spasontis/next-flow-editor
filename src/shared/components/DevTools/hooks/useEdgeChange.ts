@@ -2,7 +2,7 @@ import { useCallback } from "react";
 
 import { Edge, SetEdges } from "@/shared/types";
 
-export const useFlowEdgeChange = (
+export const useEdgeChange = (
   selectedEdge: Edge | undefined,
   setEdges: SetEdges
 ) => {
