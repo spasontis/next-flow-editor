@@ -9,9 +9,13 @@
   padding-inline: var(--space-12);
 }
 
+.selected {
+  border: var(--border-1) solid var(--border-color-2);
+  background: var(--background-color-3);
+}
+
 .input {
   text-align: center;
-
   border: var(--border-1) solid var(--border-color-1);
   border-radius: var(--border-radius-4);
   padding-block: var(--space-4);

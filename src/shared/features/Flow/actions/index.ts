@@ -16,10 +16,14 @@ export const getItems = (
 ) => {
   const flowData = localStorage.getItem("myFlowData");
   if (flowData) {
-    const { nodes: savedNodes, edges: savedEdges } = JSON.parse(flowData);
+    const { nodes: savedNodes, edges: edges } = JSON.parse(flowData);
+    const nodes = savedNodes.map((node: Node) => ({
+      ...node,
+      data: { ...node.data, selected: false },
+    }));
 
-    setNodes(savedNodes);
-    setEdges(savedEdges);
+    setNodes(nodes);
+    setEdges(edges);
 
     const maxId = savedNodes.reduce(
       (max: number, node: Node) => Math.max(max, Number(node.id)),

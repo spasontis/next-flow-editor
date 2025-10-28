@@ -1,8 +1,4 @@
-import { Node } from "@/shared/types";
-
-interface CustomNodeData extends Record<string, unknown> {
+export interface CustomNodeData {
   label: string;
   onChange?: (id: string, value: string) => void;
 }
-
-export type CustomNodeType = Node<CustomNodeData>;
