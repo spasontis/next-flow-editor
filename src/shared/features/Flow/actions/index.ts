@@ -51,7 +51,7 @@ export const getNewEdge = ({
     id: `${id}-edge`,
     source: sourceId,
     target: targetId || id,
-    animated: true,
+    animated: false,
     style: { stroke: "#772DF6" },
   };
 };

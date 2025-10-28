@@ -1,8 +1,8 @@
-export const DEFAULT_NODES = [
+export const INITIAL_NODES = [
   {
     id: "0",
     position: { x: 0, y: 0 },
-    data: { label: "start" },
+    data: { label: "FRONT-END" },
     style: {
       color: "#fff",
       border: "2px solid #772df6",

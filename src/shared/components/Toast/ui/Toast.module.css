@@ -1,0 +1,30 @@
+.toast {
+  position: fixed;
+  right: 20px;
+  opacity: 0;
+  color: var(--white);
+  padding: var(--space-10) var(--space-20);
+  border-radius: var(--border-radius-4);
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+.green {
+  background-color: var(--green-500);
+}
+
+.red {
+  background-color: var(--red-500);
+}
+
+@keyframes slideUp {
+  from {
+    bottom: -100px;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    bottom: 40px;
+    opacity: 0.5;
+    transform: translateY(20px);
+  }
+}
