@@ -2,15 +2,9 @@ import { Handle, Position } from "@xyflow/react";
 
 import styles from "./CustomNode.module.css";
 
-import { CustomNodeData } from "../types";
+import { CustomNodeType } from "../types";
 
-export const CustomNode = ({
-  id,
-  data,
-}: {
-  id: string;
-  data: CustomNodeData;
-}) => {
+export const CustomNode = ({ id, data }: CustomNodeType) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     data.onChange?.(id, e.target.value);
   };
@@ -20,7 +14,7 @@ export const CustomNode = ({
       <input
         className={styles.input}
         type="text"
-        placeholder={data.label}
+        placeholder={`Node ${id}`}
         onChange={handleChange}
         value={data.label}
       />
