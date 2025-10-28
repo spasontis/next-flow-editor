@@ -14,14 +14,14 @@ import {
 
 import "@xyflow/react/dist/style.css";
 
-import { DevTools } from "@/shared/components/DevTools";
 import { CustomNode } from "@/shared/components/CustomNode";
+import { DevTools } from "@/shared/features/DevTools";
 
-import { useFlowConnect, useFlowConnectEnd } from "../hooks";
-
+import { useFlowConnect, useFlowConnectEnd, useNodeDataChange } from "../hooks";
 import { getItems, resetSelected } from "../actions";
 
 import styles from "./Flow.module.css";
+import { SetNodes } from "@/shared/types";
 
 export const Flow = () => {
   const proOptions = { hideAttribution: true };
@@ -54,15 +54,7 @@ export const Flow = () => {
 
   const onClick = resetSelected(setSelectedNode, setSelectedEdge);
 
-  const handleNodeLabelChange = (id: string, value: string) => {
-    setNodes((nds) =>
-      nds.map((node) =>
-        node.id === id
-          ? { ...node, data: { ...node.data, label: value } }
-          : node
-      )
-    );
-  };
+  const handleNodeLabelChange = useNodeDataChange(setNodes, selectedNode?.id);
 
   const editedNodes = nodes.map((node) => ({
     ...node,
