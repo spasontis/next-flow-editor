@@ -2,7 +2,7 @@ import { useCallback } from "react";
 
 import { SetSelectedNode, SetNodes, SetEdges, Node } from "@/shared/types";
 
-export const useFlowNodeRemove = (
+export const useNodeRemove = (
   selectedNode: Node | undefined,
   setSelectedNode: SetSelectedNode,
   setNodes: SetNodes,

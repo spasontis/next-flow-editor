@@ -1,19 +1,18 @@
-import { type Node, type Edge, Panel } from "@xyflow/react";
-import clsx from "clsx";
+import { useState } from "react";
 
-import {
-  useFlowEdgeChange,
-  useFlowNodeRemove,
-  useFlowRestore,
-  useFlowSave,
-} from "../hooks";
+import { type Node, type Edge, Panel } from "@xyflow/react";
+
+import { useEdgeChange, useFlowRestore, useFlowSave } from "../hooks";
+
+import { ViewportLogger } from "@/shared/components/ViewPortLogger";
+import { NodeInspector } from "@/shared/components/NodeIncpector";
 
 import { Toast, useShowToast } from "@/shared/components/Toast";
+import { useNodeRemove } from "@/shared/components/CustomNode";
+
+import clsx from "clsx";
 
 import styles from "./DevTools.module.css";
-import { NodeInspector } from "../../NodeIncpector";
-import { ViewportLogger } from "../../ViewPortLogger";
-import { useState } from "react";
 
 type SetSelectedNode = React.Dispatch<React.SetStateAction<Node | undefined>>;
 type SetNodes = React.Dispatch<React.SetStateAction<Node[]>>;
@@ -44,23 +43,24 @@ export const DevTools = ({
   const saveFlow = useFlowSave({ nodes, edges });
   const restoreFlow = useFlowRestore(setNodes, setEdges);
 
-  const changeEdgeStyle = useFlowEdgeChange(selectedEdge, setEdges);
-  const removeNode = useFlowNodeRemove(
+  const changeEdgeStyle = useEdgeChange(selectedEdge, setEdges);
+
+  const removeNode = useNodeRemove(
     selectedNode,
     setSelectedNode,
     setNodes,
     setEdges
   );
 
-  const onSetNodeInspector = () => {
+  const onNodeInspector = () => {
     setNodeInspector((prev) => !prev);
   };
 
-  const onSetViewPortLogger = () => {
+  const onViewPortLogger = () => {
     setViewportLogger((prev) => !prev);
   };
 
-  const onSave = () => {
+  const onSaveFlow = () => {
     saveFlow();
     showToast("Success saved", "green");
   };
@@ -75,7 +75,7 @@ export const DevTools = ({
     showToast("Edge changed", "default");
   };
 
-  const onRestore = () => {
+  const onRestoreFlow = () => {
     restoreFlow();
     showToast("Flow restored", "red");
   };
@@ -83,29 +83,46 @@ export const DevTools = ({
   return (
     <>
       <Panel position="top-right" className={styles.panel}>
-        <button className={styles.button} onClick={onSetNodeInspector}>
+        {selectedEdge && (
+          <>
+            <button
+              className={clsx(styles.button, styles.default)}
+              onClick={onChangeEdge}
+            >
+              Change edge style
+            </button>
+            <span className={styles.line}></span>
+          </>
+        )}
+        {selectedNode && (
+          <>
+            <button
+              className={clsx(styles.button, styles.default)}
+              onClick={onRemoveNode}
+            >
+              Delete
+            </button>
+            <span className={styles.line}></span>
+          </>
+        )}
+
+        <button className={styles.button} onClick={onNodeInspector}>
           NodeInspector
         </button>
-        <button className={styles.button} onClick={onSetViewPortLogger}>
+        <button className={styles.button} onClick={onViewPortLogger}>
           ViewPort
         </button>
-        {selectedNode && (
-          <button className={styles.button} onClick={onRemoveNode}>
-            Delete
-          </button>
-        )}
-        {selectedEdge && (
-          <button
-            className={clsx(styles.button, styles.edit)}
-            onClick={onChangeEdge}
-          >
-            Change
-          </button>
-        )}
-        <button className={clsx(styles.button, styles.green)} onClick={onSave}>
+        <span className={styles.line}></span>
+        <button
+          className={clsx(styles.button, styles.green)}
+          onClick={onSaveFlow}
+        >
           Save
         </button>
-        <button className={clsx(styles.button, styles.red)} onClick={onRestore}>
+        <button
+          className={clsx(styles.button, styles.red)}
+          onClick={onRestoreFlow}
+        >
           Restore
         </button>
       </Panel>
