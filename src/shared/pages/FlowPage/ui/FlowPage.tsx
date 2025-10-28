@@ -1,5 +1,6 @@
-import { Flow } from "@/shared/components/Flow/ui/Flow";
 import { ReactFlowProvider } from "@xyflow/react";
+
+import { Flow } from "@/shared/features/Flow";
 
 export const FlowPage = () => {
   return (

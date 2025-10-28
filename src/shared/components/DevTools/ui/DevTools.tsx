@@ -6,13 +6,14 @@ import {
   useFlowNodeRemove,
   useFlowRestore,
   useFlowSave,
-  useShowToast,
 } from "../hooks";
 
-import { NodeInspector } from "@/shared/components/NodeIncpector";
-import { ViewportLogger } from "@/shared/components/ViewPortLogger";
+import { Toast, useShowToast } from "@/shared/components/Toast";
 
 import styles from "./DevTools.module.css";
+import { NodeInspector } from "../../NodeIncpector";
+import { ViewportLogger } from "../../ViewPortLogger";
+import { useState } from "react";
 
 type SetSelectedNode = React.Dispatch<React.SetStateAction<Node | undefined>>;
 type SetNodes = React.Dispatch<React.SetStateAction<Node[]>>;
@@ -35,6 +36,9 @@ export const DevTools = ({
   setNodes: SetNodes;
   setEdges: SetEdges;
 }) => {
+  const [nodeInspector, setNodeInspector] = useState(false);
+  const [viewportLogger, setViewportLogger] = useState(false);
+
   const { toastMessage, toastColor, showToast } = useShowToast();
 
   const saveFlow = useFlowSave({ nodes, edges });
@@ -47,6 +51,14 @@ export const DevTools = ({
     setNodes,
     setEdges
   );
+
+  const onSetNodeInspector = () => {
+    setNodeInspector((prev) => !prev);
+  };
+
+  const onSetViewPortLogger = () => {
+    setViewportLogger((prev) => !prev);
+  };
 
   const onSave = () => {
     saveFlow();
@@ -71,6 +83,12 @@ export const DevTools = ({
   return (
     <>
       <Panel position="top-right" className={styles.panel}>
+        <button className={styles.button} onClick={onSetNodeInspector}>
+          NodeInspector
+        </button>
+        <button className={styles.button} onClick={onSetViewPortLogger}>
+          ViewPort
+        </button>
         {selectedNode && (
           <button className={styles.button} onClick={onRemoveNode}>
             Delete
@@ -91,13 +109,9 @@ export const DevTools = ({
           Restore
         </button>
       </Panel>
-      {toastMessage && (
-        <div className={clsx(styles.toast, styles[toastColor])}>
-          {toastMessage}
-        </div>
-      )}
-      <NodeInspector />
-      <ViewportLogger />
+      {nodeInspector && <NodeInspector />}
+      {viewportLogger && <ViewportLogger />}
+      <Toast toastMessage={toastMessage} toastColor={toastColor} />
     </>
   );
 };

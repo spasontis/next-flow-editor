@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 
 import { SetEdges, SetNodes } from "@/shared/types";
-import { DEFAULT_NODES } from "../constants";
+import { INITIAL_NODES } from "../constants";
 
 export const useFlowRestore = (setNodes: SetNodes, setEdges: SetEdges) => {
   const onRestore = useCallback(() => {
@@ -12,7 +12,7 @@ export const useFlowRestore = (setNodes: SetNodes, setEdges: SetEdges) => {
     if (flowData !== null) {
       const { nodes: savedNodes, edges: savedEdges } = JSON.parse(flowData);
       if (savedNodes.length === 0) {
-        setNodes(DEFAULT_NODES);
+        setNodes(INITIAL_NODES);
         return;
       }
       setNodes(savedNodes);
@@ -20,7 +20,7 @@ export const useFlowRestore = (setNodes: SetNodes, setEdges: SetEdges) => {
     } else {
       localStorage.setItem(
         "myFlowData",
-        JSON.stringify({ nodes: DEFAULT_NODES, edges: [] })
+        JSON.stringify({ nodes: INITIAL_NODES, edges: [] })
       );
     }
   }, [setNodes, setEdges]);

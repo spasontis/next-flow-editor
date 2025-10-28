@@ -1,5 +1,7 @@
 .node {
-  border-radius: var(--border-radius-2);
+  display: inline-block;
+  border: var(--border-1) solid var(--primary);
+  border-radius: var(--border-radius-4);
   font-size: 12px;
   color: var(--white);
   background-color: var(--background-color-1);
@@ -8,6 +10,8 @@
 }
 
 .input {
+  text-align: center;
+
   border: var(--border-1) solid var(--border-color-1);
   border-radius: var(--border-radius-4);
   padding-block: var(--space-4);
