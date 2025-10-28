@@ -36,7 +36,7 @@ export const getNewNode = ({ id, position }: getNewNodeParams): Node => {
     id,
     type: "customNode",
     position,
-    data: { label: `Node: ${id}` },
+    data: { label: "" },
     style: { width: "auto", height: "auto", cursor: "pointer" },
     origin: [0.5, 0.0],
   };

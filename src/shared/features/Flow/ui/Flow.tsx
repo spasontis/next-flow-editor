@@ -54,6 +54,21 @@ export const Flow = () => {
 
   const onClick = resetSelected(setSelectedNode, setSelectedEdge);
 
+  const handleNodeLabelChange = (id: string, value: string) => {
+    setNodes((nds) =>
+      nds.map((node) =>
+        node.id === id
+          ? { ...node, data: { ...node.data, label: value } }
+          : node
+      )
+    );
+  };
+
+  const editedNodes = nodes.map((node) => ({
+    ...node,
+    data: { ...node.data, onChange: handleNodeLabelChange },
+  }));
+
   const nodeTypes = {
     customNode: CustomNode,
   };
@@ -62,7 +77,7 @@ export const Flow = () => {
     <div className={styles.roadmap} ref={reactFlowWrapper}>
       <ReactFlow
         colorMode="dark"
-        nodes={nodes}
+        nodes={editedNodes}
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
