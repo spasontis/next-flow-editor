@@ -11,7 +11,7 @@ import {
 
 import { ViewportLogger } from "@/shared/components/ViewPortLogger";
 import { NodeInspector } from "@/shared/components/NodeIncpector";
-import { Toast, useShowToast } from "@/shared/components/Toaster";
+import { Toaster, useShowToast } from "@/shared/components/Toaster";
 
 import { UtilitiesControls } from "@/shared/components/UtilitiesControls";
 import { EdgeControls } from "@/shared/components/EdgeControls";
@@ -78,7 +78,7 @@ export const DevTools = ({
       </Panel>
       {nodeInspector && <NodeInspector />}
       {viewportLogger && <ViewportLogger />}
-      <Toast toastMessage={toastMessage} toastColor={toastColor} />
+      <Toaster toastMessage={toastMessage} toastColor={toastColor} />
     </>
   );
 };

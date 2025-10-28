@@ -1,2 +1,2 @@
-export { Toast } from "./ui";
+export { Toaster } from "./ui";
 export { useShowToast } from "./hooks";
