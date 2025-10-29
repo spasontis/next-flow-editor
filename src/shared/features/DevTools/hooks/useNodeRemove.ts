@@ -1,10 +1,10 @@
 import { useCallback } from "react";
 
-import { SetSelectedNode, SetNodes, SetEdges, Node } from "@/shared/types";
+import { SetNodes, SetEdges, Node } from "@/shared/types";
 
 export const useNodeRemove = (
   selectedNode: Node | undefined,
-  setSelectedNode: SetSelectedNode,
+
   setNodes: SetNodes,
   setEdges: SetEdges
 ) => {
@@ -18,8 +18,7 @@ export const useNodeRemove = (
           edge.source !== selectedNode.id && edge.target !== selectedNode.id
       )
     );
-    setSelectedNode(undefined);
-  }, [selectedNode, setNodes, setEdges, setSelectedNode]);
+  }, [selectedNode, setNodes, setEdges]);
 
   return onRemove;
 };

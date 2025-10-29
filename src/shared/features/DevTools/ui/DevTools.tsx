@@ -31,7 +31,6 @@ export const DevTools = ({
   edges,
   selectedNode,
   selectedEdge,
-  setSelectedNode,
   setNodes,
   setEdges,
 }: {
@@ -39,7 +38,6 @@ export const DevTools = ({
   edges: Edge[];
   selectedNode?: Node;
   selectedEdge?: Edge;
-  setSelectedNode: SetSelectedNode;
   setNodes: SetNodes;
   setEdges: SetEdges;
 }) => {
@@ -50,12 +48,7 @@ export const DevTools = ({
   const saveFlow = useFlowSave({ nodes, edges });
   const restoreFlow = useFlowRestore(setNodes, setEdges);
   const changeEdgeStyle = useEdgeChange(selectedEdge, setEdges);
-  const removeNode = useNodeRemove(
-    selectedNode,
-    setSelectedNode,
-    setNodes,
-    setEdges
-  );
+  const removeNode = useNodeRemove(selectedNode, setNodes, setEdges);
 
   const onSaveFlow = withToast(saveFlow, "Success saved", "green");
   const onRestoreFlow = withToast(restoreFlow, "Flow restored", "red");

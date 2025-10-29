@@ -13,11 +13,10 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 
-import { InputNode } from "@/shared/components/InputNode";
 import { DevTools } from "@/shared/features/DevTools";
 
 import { getItems, resetSelected } from "../actions";
-import { nodeOrigin } from "../constants";
+import { nodeOrigin, nodeTypes } from "../constants";
 import { useFlowConnect, useFlowConnectEnd, useNodeDataChange } from "../hooks";
 
 import styles from "./WorkFlow.module.css";
@@ -33,14 +32,9 @@ export const WorkFlow = () => {
 
   const idRef = useRef<number>(1);
 
-  const nodeTypes = {
-    customNode: InputNode,
-  };
-
   const { screenToFlowPosition } = useReactFlow();
-
+  const handleNodeLabelChange = useNodeDataChange(setNodes);
   const onConnect = useFlowConnect(setEdges);
-
   const onConnectEnd: OnConnectEnd = useFlowConnectEnd({
     setNodes,
     setEdges,
@@ -48,18 +42,16 @@ export const WorkFlow = () => {
     idRef,
   });
 
-  useEffect(() => {
-    getItems(setNodes, setEdges, idRef);
-  }, [setNodes, setEdges]);
-
   const onClick = resetSelected(setSelectedNode, setSelectedEdge);
-
-  const handleNodeLabelChange = useNodeDataChange(setNodes, selectedNode?.id);
 
   const editedNodes = nodes.map((node) => ({
     ...node,
     data: { ...node.data, onChange: handleNodeLabelChange },
   }));
+
+  useEffect(() => {
+    getItems(setNodes, setEdges, idRef);
+  }, [setNodes, setEdges]);
 
   return (
     <div className={styles.roadmap} ref={reactFlowWrapper}>
@@ -81,7 +73,6 @@ export const WorkFlow = () => {
         <DevTools
           selectedNode={selectedNode}
           selectedEdge={selectedEdge}
-          setSelectedNode={setSelectedNode}
           nodes={nodes}
           edges={edges}
           setNodes={setNodes}
