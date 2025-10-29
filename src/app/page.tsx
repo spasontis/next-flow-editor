@@ -1,5 +1,3 @@
-import { FlowPage } from "@/shared/pages/FlowPage";
-
-export default function App() {
-  return <FlowPage />;
+export default function Home() {
+  return <h1>Home Page</h1>;
 }
