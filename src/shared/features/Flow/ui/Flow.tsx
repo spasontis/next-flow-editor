@@ -6,29 +6,32 @@ import {
   ReactFlow,
   useNodesState,
   useEdgesState,
+  Panel,
 } from "@xyflow/react";
-
-import { Edge, Node } from "@/shared/types";
-
 import "@xyflow/react/dist/style.css";
 
-import styles from "./Flow.module.css";
-import { getItems } from "../actions";
 import { DefaultNode } from "@/shared/components/DefaultNode";
+import { Edge, Node } from "@/shared/types";
+
+import { getItems } from "../actions";
+import { nodeOrigin } from "../constants";
+
+import styles from "./Flow.module.css";
+import Link from "next/link";
 
 export const Flow = () => {
+  const proOptions = { hideAttribution: true };
+
   const reactFlowWrapper = useRef(null);
 
-  const [nodes, setNodes, onNodesChange] = useNodesState<Node>([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
+  const [nodes, setNodes] = useNodesState<Node>([]);
+  const [edges, setEdges] = useEdgesState<Edge>([]);
 
   const nodeTypes = {
     customNode: DefaultNode,
   };
 
   useEffect(() => getItems(setNodes, setEdges), [setNodes, setEdges]);
-
-  const nodeOrigin: [number, number] = [0.5, 0];
 
   return (
     <div className={styles.roadmap} ref={reactFlowWrapper}>
@@ -38,9 +41,15 @@ export const Flow = () => {
         nodeTypes={nodeTypes}
         nodesDraggable={false}
         edges={edges}
+        proOptions={proOptions}
         fitView
         nodeOrigin={nodeOrigin}
       >
+        <Panel position="top-right">
+          <Link href="/workflow" className={styles.button}>
+            WorkFlow
+          </Link>
+        </Panel>
         <Background />
       </ReactFlow>
     </div>

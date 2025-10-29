@@ -11,20 +11,18 @@ import {
   Edge,
   OnConnectEnd,
 } from "@xyflow/react";
-
 import "@xyflow/react/dist/style.css";
 
 import { InputNode } from "@/shared/components/InputNode";
 import { DevTools } from "@/shared/features/DevTools";
 
-import { useFlowConnect, useFlowConnectEnd, useNodeDataChange } from "../hooks";
 import { getItems, resetSelected } from "../actions";
+import { nodeOrigin } from "../constants";
+import { useFlowConnect, useFlowConnectEnd, useNodeDataChange } from "../hooks";
 
 import styles from "./WorkFlow.module.css";
-import { nodeOrigin } from "../constants";
 
 export const WorkFlow = () => {
-  const proOptions = { hideAttribution: true };
   const reactFlowWrapper = useRef(null);
 
   const [nodes, setNodes, onNodesChange] = useNodesState<Node>([]);
@@ -78,7 +76,6 @@ export const WorkFlow = () => {
         onEdgeClick={(event, edge) => onClick({ edge })}
         onPaneClick={() => onClick({})}
         fitView
-        proOptions={proOptions}
         nodeOrigin={nodeOrigin}
       >
         <DevTools

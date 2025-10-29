@@ -1,6 +1,20 @@
 import { useState } from "react";
+import { Panel } from "@xyflow/react";
 
-import { type Node, type Edge, Panel } from "@xyflow/react";
+import { EdgeControls } from "@/shared/components/EdgeControls";
+import { NodeControls } from "@/shared/components/NodeControls";
+import { UtilitiesControls } from "@/shared/components/UtilitiesControls";
+import { ViewportLogger } from "@/shared/components/ViewPortLogger";
+import { NodeInspector } from "@/shared/components/NodeIncpector";
+import { Toaster, useShowToast } from "@/shared/components/Toaster";
+
+import {
+  Node,
+  Edge,
+  SetEdges,
+  SetNodes,
+  SetSelectedNode,
+} from "@/shared/types";
 
 import {
   useFlowRestore,
@@ -9,17 +23,8 @@ import {
   useNodeRemove,
 } from "../hooks";
 
-import { ViewportLogger } from "@/shared/components/ViewPortLogger";
-import { NodeInspector } from "@/shared/components/NodeIncpector";
-import { Toaster, useShowToast } from "@/shared/components/Toaster";
-
-import { UtilitiesControls } from "@/shared/components/UtilitiesControls";
-import { EdgeControls } from "@/shared/components/EdgeControls";
-import { NodeControls } from "@/shared/components/NodeControls";
-
-import { SetEdges, SetNodes, SetSelectedNode } from "@/shared/types";
-
 import styles from "./DevTools.module.css";
+import Link from "next/link";
 
 export const DevTools = ({
   nodes,
@@ -67,17 +72,30 @@ export const DevTools = ({
   return (
     <>
       <Panel position="top-right" className={styles.panel}>
-        <EdgeControls selectedEdge={selectedEdge} onChangeEdge={onChangeEdge} />
-        <NodeControls selectedNode={selectedNode} onRemoveNode={onRemoveNode} />
-        <UtilitiesControls
-          onNodeInspector={onNodeInspector}
-          onViewPortLogger={onViewPortLogger}
-          onSaveFlow={onSaveFlow}
-          onRestoreFlow={onRestoreFlow}
-        />
+        <div className={styles.devtools}>
+          <EdgeControls
+            selectedEdge={selectedEdge}
+            onChangeEdge={onChangeEdge}
+          />
+          <NodeControls
+            selectedNode={selectedNode}
+            onRemoveNode={onRemoveNode}
+          />
+          <UtilitiesControls
+            onNodeInspector={onNodeInspector}
+            onViewPortLogger={onViewPortLogger}
+            onSaveFlow={onSaveFlow}
+            onRestoreFlow={onRestoreFlow}
+          />
+        </div>
+
+        <Link href="/flow" className={styles.button}>
+          Flow
+        </Link>
       </Panel>
-      {nodeInspector && <NodeInspector />}
+
       {viewportLogger && <ViewportLogger />}
+      {nodeInspector && <NodeInspector />}
       <Toaster toastMessage={toastMessage} toastColor={toastColor} />
     </>
   );
