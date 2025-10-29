@@ -1,98 +1,46 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import {
   Background,
   ReactFlow,
   useNodesState,
   useEdgesState,
-  useReactFlow,
-  Node,
-  Edge,
-  OnConnectEnd,
 } from "@xyflow/react";
+
+import { Edge, Node } from "@/shared/types";
 
 import "@xyflow/react/dist/style.css";
 
-import { CustomNode } from "@/shared/components/CustomNode";
-import { DevTools } from "@/shared/features/DevTools";
-
-import { useFlowConnect, useFlowConnectEnd, useNodeDataChange } from "../hooks";
-import { getItems, resetSelected } from "../actions";
-
 import styles from "./Flow.module.css";
-import { SetNodes } from "@/shared/types";
+import { getItems } from "../actions";
+import { DefaultNode } from "@/shared/components/DefaultNode";
 
 export const Flow = () => {
-  const proOptions = { hideAttribution: true };
   const reactFlowWrapper = useRef(null);
 
   const [nodes, setNodes, onNodesChange] = useNodesState<Node>([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
 
-  const [selectedNode, setSelectedNode] = useState<Node | undefined>(undefined);
-  const [selectedEdge, setSelectedEdge] = useState<Edge | undefined>(undefined);
+  const nodeTypes = {
+    customNode: DefaultNode,
+  };
 
-  const idRef = useRef<number>(1);
+  useEffect(() => getItems(setNodes, setEdges), [setNodes, setEdges]);
 
   const nodeOrigin: [number, number] = [0.5, 0];
-
-  const { screenToFlowPosition } = useReactFlow();
-
-  const onConnect = useFlowConnect(setEdges);
-
-  const onConnectEnd: OnConnectEnd = useFlowConnectEnd({
-    setNodes,
-    setEdges,
-    screenToFlowPosition,
-    idRef,
-  });
-
-  useEffect(() => {
-    getItems(setNodes, setEdges, idRef);
-  }, [setNodes, setEdges]);
-
-  const onClick = resetSelected(setSelectedNode, setSelectedEdge);
-
-  const handleNodeLabelChange = useNodeDataChange(setNodes, selectedNode?.id);
-
-  const editedNodes = nodes.map((node) => ({
-    ...node,
-    data: { ...node.data, onChange: handleNodeLabelChange },
-  }));
-
-  const nodeTypes = {
-    customNode: CustomNode,
-  };
 
   return (
     <div className={styles.roadmap} ref={reactFlowWrapper}>
       <ReactFlow
         colorMode="dark"
-        nodes={editedNodes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        onConnectEnd={onConnectEnd}
+        nodes={nodes}
         nodeTypes={nodeTypes}
-        onNodeClick={(event, node) => onClick({ node })}
-        onEdgeClick={(event, edge) => onClick({ edge })}
-        onPaneClick={() => onClick({})}
+        nodesDraggable={false}
+        edges={edges}
         fitView
-        proOptions={proOptions}
-        fitViewOptions={{ padding: 2 }}
         nodeOrigin={nodeOrigin}
       >
-        <DevTools
-          selectedNode={selectedNode}
-          selectedEdge={selectedEdge}
-          setSelectedNode={setSelectedNode}
-          nodes={nodes}
-          edges={edges}
-          setNodes={setNodes}
-          setEdges={setEdges}
-        />
         <Background />
       </ReactFlow>
     </div>

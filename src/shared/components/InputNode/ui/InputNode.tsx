@@ -1,11 +1,12 @@
 import { Handle, Position } from "@xyflow/react";
 
-import styles from "./CustomNode.module.css";
-
-import { CustomNodeData } from "../types";
 import clsx from "clsx";
 
-export const CustomNode = ({
+import { CustomNodeData } from "../types";
+
+import styles from "./InputNode.module.css";
+
+export const InputNode = ({
   id,
   data,
   selected,
