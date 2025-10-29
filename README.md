@@ -9,8 +9,8 @@ To start the project, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/spasontis/react-flow-editor.git
-   cd react-flow-editor
+   git clone https://github.com/spasontis/next-flow-editor.git
+   cd next-flow-editor
    ```
 
 2. Install the dependencies:
