@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Panel } from "@xyflow/react";
 
-import { EdgeControls } from "@/shared/components/EdgeControls";
-import { NodeControls } from "@/shared/components/NodeControls";
 import { Toaster, useShowToast } from "@/shared/components/Toaster";
 import { Node, Edge, SetEdges, SetNodes } from "@/shared/types";
 
@@ -13,6 +11,8 @@ import {
   useNodeRemove,
 } from "../hooks";
 
+import { EdgeControls } from "./EdgeControls";
+import { NodeControls } from "./NodeControls";
 import { ViewportLogger } from "./ViewPortLogger";
 import { NodeInspector } from "./NodeInspector";
 
