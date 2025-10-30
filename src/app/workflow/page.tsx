@@ -1,5 +1,5 @@
-import { WorkFlowPage } from "@/shared/pages/WorkFlowPage";
+import { DevelopmentFlowPage } from "@/shared/pages/development-flow";
 
 export default function WorkFlow() {
-  return <WorkFlowPage />;
+  return <DevelopmentFlowPage />;
 }

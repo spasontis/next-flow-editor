@@ -34,3 +34,23 @@
   opacity: 1;
   transition: ease-in;
 }
+
+.line {
+  width: 1px;
+  height: auto;
+  background-color: var(--background-color-2);
+  display: "inline-block";
+  margin: "0 8px";
+}
+
+.default {
+  background-color: var(--background-color-3);
+}
+
+.green {
+  background-color: var(--green-500);
+}
+
+.red {
+  background-color: var(--red-500);
+}

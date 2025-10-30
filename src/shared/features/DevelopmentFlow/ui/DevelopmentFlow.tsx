@@ -13,15 +13,15 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 
-import { DevTools } from "@/shared/features/DevTools";
+import { DevTools } from "@/widgets/DevTools";
 
 import { getItems, resetSelected } from "../actions";
 import { nodeOrigin, nodeTypes } from "../constants";
 import { useFlowConnect, useFlowConnectEnd, useNodeDataChange } from "../hooks";
 
-import styles from "./WorkFlow.module.css";
+import styles from "./DevelopmentFlow.module.css";
 
-export const WorkFlow = () => {
+export const DevelopmentFlow = () => {
   const reactFlowWrapper = useRef(null);
 
   const [nodes, setNodes, onNodesChange] = useNodesState<Node>([]);

@@ -1,5 +1,5 @@
 import { useNodes, useReactFlow, ViewportPortal } from "@xyflow/react";
-import styles from "./NodeInspector.module.css";
+import styles from "./DevTools.module.css";
 
 export function NodeInspector() {
   const { getInternalNode } = useReactFlow();

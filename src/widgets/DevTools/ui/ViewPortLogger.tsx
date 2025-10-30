@@ -1,6 +1,5 @@
 import { Panel, useStore } from "@xyflow/react";
-
-import styles from "./ViewPortLogger.module.css";
+import styles from "./DevTools.module.css";
 
 export const ViewportLogger = () => {
   const viewport = useStore(
