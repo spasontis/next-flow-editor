@@ -1,6 +1,6 @@
 import { Node } from "@/shared/types";
 
-import styles from "./NodeControls.module.css";
+import styles from "./DevTools.module.css";
 
 export const NodeControls = ({
   selectedNode,

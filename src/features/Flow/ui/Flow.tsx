@@ -7,6 +7,7 @@ import {
   useNodesState,
   useEdgesState,
   Panel,
+  ReactFlowProvider,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 
@@ -34,24 +35,26 @@ export const Flow = () => {
   useEffect(() => getItems(setNodes, setEdges), [setNodes, setEdges]);
 
   return (
-    <div className={styles.roadmap} ref={reactFlowWrapper}>
-      <ReactFlow
-        colorMode="dark"
-        nodes={nodes}
-        nodeTypes={nodeTypes}
-        nodesDraggable={false}
-        edges={edges}
-        proOptions={proOptions}
-        fitView
-        nodeOrigin={nodeOrigin}
-      >
-        <Panel position="top-right">
-          <Link href="/workflow" className={styles.button}>
-            WorkFlow
-          </Link>
-        </Panel>
-        <Background />
-      </ReactFlow>
-    </div>
+    <ReactFlowProvider>
+      <div className={styles.roadmap} ref={reactFlowWrapper}>
+        <ReactFlow
+          colorMode="dark"
+          nodes={nodes}
+          nodeTypes={nodeTypes}
+          nodesDraggable={false}
+          edges={edges}
+          proOptions={proOptions}
+          fitView
+          nodeOrigin={nodeOrigin}
+        >
+          <Panel position="top-right">
+            <Link href="/workflow" className={styles.button}>
+              WorkFlow
+            </Link>
+          </Panel>
+          <Background />
+        </ReactFlow>
+      </div>
+    </ReactFlowProvider>
   );
 };

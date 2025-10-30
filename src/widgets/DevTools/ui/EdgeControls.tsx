@@ -1,6 +1,6 @@
 import { Edge } from "@/shared/types";
 
-import styles from "./EdgeControls.module.css";
+import styles from "./DevTools.module.css";
 
 export const EdgeControls = ({
   selectedEdge,
