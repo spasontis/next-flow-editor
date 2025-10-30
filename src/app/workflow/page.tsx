@@ -1,5 +1,10 @@
-import { DevelopmentFlowPage } from "@/shared/pages/development-flow";
+import { DevelopmentFlow } from "@/features/DevelopmentFlow";
+import { ReactFlowProvider } from "@xyflow/react";
 
 export default function WorkFlow() {
-  return <DevelopmentFlowPage />;
+  return (
+    <ReactFlowProvider>
+      <DevelopmentFlow />
+    </ReactFlowProvider>
+  );
 }

@@ -10,19 +10,19 @@ import {
   Node,
   Edge,
   OnConnectEnd,
-  ReactFlowProvider,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 
 import { DevTools } from "@/widgets/DevTools";
 
-import { getItems, resetSelected } from "../actions";
+import { getItems, resetSelected, removeNode } from "../actions";
 import { nodeOrigin, nodeTypes } from "../constants";
 import { useFlowConnect, useFlowConnectEnd, useNodeDataChange } from "../hooks";
 
 import styles from "./DevelopmentFlow.module.css";
 
 export const DevelopmentFlow = () => {
+  const idRef = useRef<number>(1);
   const reactFlowWrapper = useRef(null);
 
   const [nodes, setNodes, onNodesChange] = useNodesState<Node>([]);
@@ -31,10 +31,7 @@ export const DevelopmentFlow = () => {
   const [selectedNode, setSelectedNode] = useState<Node | undefined>(undefined);
   const [selectedEdge, setSelectedEdge] = useState<Edge | undefined>(undefined);
 
-  const idRef = useRef<number>(1);
-
   const { screenToFlowPosition } = useReactFlow();
-  const handleNodeLabelChange = useNodeDataChange(setNodes);
   const onConnect = useFlowConnect(setEdges);
   const onConnectEnd: OnConnectEnd = useFlowConnectEnd({
     setNodes,
@@ -43,11 +40,18 @@ export const DevelopmentFlow = () => {
     idRef,
   });
 
+  const handleNodeRemove = removeNode(setNodes, setEdges, setSelectedNode);
+  const handleNodeLabelChange = useNodeDataChange(setNodes);
+
   const onClick = resetSelected(setSelectedNode, setSelectedEdge);
 
-  const editedNodes = nodes.map((node) => ({
+  const developmentNodes = nodes.map((node) => ({
     ...node,
-    data: { ...node.data, onChange: handleNodeLabelChange },
+    data: {
+      ...node.data,
+      onChange: handleNodeLabelChange,
+      onRemove: handleNodeRemove,
+    },
   }));
 
   useEffect(() => {
@@ -55,34 +59,32 @@ export const DevelopmentFlow = () => {
   }, [setNodes, setEdges]);
 
   return (
-    <ReactFlowProvider>
-      <div className={styles.roadmap} ref={reactFlowWrapper}>
-        <ReactFlow
-          colorMode="dark"
-          nodes={editedNodes}
-          nodeTypes={nodeTypes}
+    <div className={styles.roadmap} ref={reactFlowWrapper}>
+      <ReactFlow
+        colorMode="dark"
+        nodes={developmentNodes}
+        nodeTypes={nodeTypes}
+        edges={edges}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        onConnect={onConnect}
+        onConnectEnd={onConnectEnd}
+        onNodeClick={(event, node) => onClick({ node })}
+        onEdgeClick={(event, edge) => onClick({ edge })}
+        onPaneClick={() => onClick({})}
+        fitView
+        nodeOrigin={nodeOrigin}
+      >
+        <DevTools
+          selectedNode={selectedNode}
+          selectedEdge={selectedEdge}
+          nodes={nodes}
           edges={edges}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          onConnect={onConnect}
-          onConnectEnd={onConnectEnd}
-          onNodeClick={(event, node) => onClick({ node })}
-          onEdgeClick={(event, edge) => onClick({ edge })}
-          onPaneClick={() => onClick({})}
-          fitView
-          nodeOrigin={nodeOrigin}
-        >
-          <DevTools
-            selectedNode={selectedNode}
-            selectedEdge={selectedEdge}
-            nodes={nodes}
-            edges={edges}
-            setNodes={setNodes}
-            setEdges={setEdges}
-          />
-          <Background />
-        </ReactFlow>
-      </div>
-    </ReactFlowProvider>
+          setNodes={setNodes}
+          setEdges={setEdges}
+        />
+        <Background />
+      </ReactFlow>
+    </div>
   );
 };
