@@ -10,6 +10,7 @@ import {
   Node,
   Edge,
   OnConnectEnd,
+  ReactFlowProvider,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 
@@ -54,32 +55,34 @@ export const DevelopmentFlow = () => {
   }, [setNodes, setEdges]);
 
   return (
-    <div className={styles.roadmap} ref={reactFlowWrapper}>
-      <ReactFlow
-        colorMode="dark"
-        nodes={editedNodes}
-        nodeTypes={nodeTypes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        onConnectEnd={onConnectEnd}
-        onNodeClick={(event, node) => onClick({ node })}
-        onEdgeClick={(event, edge) => onClick({ edge })}
-        onPaneClick={() => onClick({})}
-        fitView
-        nodeOrigin={nodeOrigin}
-      >
-        <DevTools
-          selectedNode={selectedNode}
-          selectedEdge={selectedEdge}
-          nodes={nodes}
+    <ReactFlowProvider>
+      <div className={styles.roadmap} ref={reactFlowWrapper}>
+        <ReactFlow
+          colorMode="dark"
+          nodes={editedNodes}
+          nodeTypes={nodeTypes}
           edges={edges}
-          setNodes={setNodes}
-          setEdges={setEdges}
-        />
-        <Background />
-      </ReactFlow>
-    </div>
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          onConnect={onConnect}
+          onConnectEnd={onConnectEnd}
+          onNodeClick={(event, node) => onClick({ node })}
+          onEdgeClick={(event, edge) => onClick({ edge })}
+          onPaneClick={() => onClick({})}
+          fitView
+          nodeOrigin={nodeOrigin}
+        >
+          <DevTools
+            selectedNode={selectedNode}
+            selectedEdge={selectedEdge}
+            nodes={nodes}
+            edges={edges}
+            setNodes={setNodes}
+            setEdges={setEdges}
+          />
+          <Background />
+        </ReactFlow>
+      </div>
+    </ReactFlowProvider>
   );
 };
