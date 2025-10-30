@@ -22,8 +22,13 @@ export const DevelopmentNode = ({
 
   return (
     <div className={clsx(styles.node, selected && styles.selected)}>
+      {selected && (
+        <button className={styles.delete} onClick={() => data.onRemove?.(id)}>
+          X
+        </button>
+      )}
       <input
-        className={styles.input}
+        className={clsx(styles.input, selected && styles.border)}
         type="text"
         placeholder={`Node ${id}`}
         onChange={handleChange}

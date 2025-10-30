@@ -39,7 +39,7 @@ export const getItems = (
 export const getNewNode = ({ id, position }: getNewNodeParams): Node => {
   return {
     id,
-    type: "customNode",
+    type: "developmentNode",
     position,
     data: { label: "" },
     style: { width: "auto", height: "auto", cursor: "pointer" },
@@ -78,4 +78,18 @@ export const resetSelected = (
     }
   };
   return onResetSelected;
+};
+
+export const removeNode = (
+  setNodes: SetNodes,
+  setEdges: SetEdges,
+  setSelectedNode?: SetSelectedNode
+) => {
+  return (id: string) => {
+    setNodes((nds) => nds.filter((n) => n.id !== id));
+    setEdges((eds) => eds.filter((e) => e.source !== id && e.target !== id));
+    if (setSelectedNode) {
+      setSelectedNode((sn) => (sn?.id === id ? undefined : sn));
+    }
+  };
 };
