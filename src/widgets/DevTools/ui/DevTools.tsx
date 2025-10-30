@@ -3,18 +3,8 @@ import { Panel } from "@xyflow/react";
 
 import { EdgeControls } from "@/shared/components/EdgeControls";
 import { NodeControls } from "@/shared/components/NodeControls";
-import { UtilitiesControls } from "@/shared/components/UtilitiesControls";
-import { ViewportLogger } from "@/shared/components/ViewPortLogger";
-import { NodeInspector } from "@/shared/components/NodeIncpector";
 import { Toaster, useShowToast } from "@/shared/components/Toaster";
-
-import {
-  Node,
-  Edge,
-  SetEdges,
-  SetNodes,
-  SetSelectedNode,
-} from "@/shared/types";
+import { Node, Edge, SetEdges, SetNodes } from "@/shared/types";
 
 import {
   useFlowRestore,
@@ -23,8 +13,13 @@ import {
   useNodeRemove,
 } from "../hooks";
 
-import styles from "./DevTools.module.css";
+import { ViewportLogger } from "./ViewPortLogger";
+import { NodeInspector } from "./NodeInspector";
+
 import Link from "next/link";
+import clsx from "clsx";
+
+import styles from "./DevTools.module.css";
 
 export const DevTools = ({
   nodes,
@@ -74,12 +69,25 @@ export const DevTools = ({
             selectedNode={selectedNode}
             onRemoveNode={onRemoveNode}
           />
-          <UtilitiesControls
-            onNodeInspector={onNodeInspector}
-            onViewPortLogger={onViewPortLogger}
-            onSaveFlow={onSaveFlow}
-            onRestoreFlow={onRestoreFlow}
-          />
+          <button className={styles.button} onClick={onNodeInspector}>
+            NodeInspector
+          </button>
+          <button className={styles.button} onClick={onViewPortLogger}>
+            ViewPort
+          </button>
+          <span className={styles.line}></span>
+          <button
+            className={clsx(styles.button, styles.green)}
+            onClick={onSaveFlow}
+          >
+            Save
+          </button>
+          <button
+            className={clsx(styles.button, styles.red)}
+            onClick={onRestoreFlow}
+          >
+            Restore
+          </button>
         </div>
 
         <Link href="/flow" className={styles.button}>

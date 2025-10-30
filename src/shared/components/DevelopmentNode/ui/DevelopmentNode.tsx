@@ -4,9 +4,9 @@ import clsx from "clsx";
 
 import { CustomNodeData } from "../types";
 
-import styles from "./InputNode.module.css";
+import styles from "./DevelopmentNode.module.css";
 
-export const InputNode = ({
+export const DevelopmentNode = ({
   id,
   data,
   selected,
