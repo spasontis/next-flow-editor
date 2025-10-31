@@ -40,7 +40,9 @@ export const Settings = ({
           <div className={styles.settings} onClick={(e) => e.stopPropagation()}>
             <div className={styles.settings_header}>
               <div className={styles.settings_title}>Settings</div>
-              <div className={styles.label}>{data.label}</div>
+              <div className={styles.label}>
+                {data.label !== "" ? data.label : `Node ${id}`}
+              </div>
               <button
                 className={styles.close}
                 onClick={() => setMenuOpen(false)}
