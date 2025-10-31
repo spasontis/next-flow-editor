@@ -1,9 +1,10 @@
 import { Handle, Position } from "@xyflow/react";
 
+import { Settings } from "@/shared/components/Settings";
+
+import { DevelopmentNodeData } from "../types";
+
 import clsx from "clsx";
-
-import { CustomNodeData } from "../types";
-
 import styles from "./DevelopmentNode.module.css";
 
 export const DevelopmentNode = ({
@@ -12,9 +13,8 @@ export const DevelopmentNode = ({
   selected,
 }: {
   id: string;
-  data: CustomNodeData;
+  data: DevelopmentNodeData;
   selected?: boolean;
-  hovered?: boolean;
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     data.onChange?.(id, e.target.value);
@@ -22,11 +22,7 @@ export const DevelopmentNode = ({
 
   return (
     <div className={clsx(styles.node, selected && styles.selected)}>
-      {selected && (
-        <button className={styles.delete} onClick={() => data.onRemove?.(id)}>
-          X
-        </button>
-      )}
+      {selected && <Settings id={id} data={data} />}
       <input
         className={clsx(styles.input, selected && styles.border)}
         type="text"
@@ -34,8 +30,8 @@ export const DevelopmentNode = ({
         onChange={handleChange}
         value={data.label}
       />
-      <Handle type="target" position={Position.Top} />
-      <Handle type="source" position={Position.Bottom} />
+      <Handle type="target" position={Position.Left} />
+      <Handle type="source" position={Position.Right} />
     </div>
   );
 };

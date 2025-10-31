@@ -21,6 +21,9 @@ export const getItems = (
     const cleanNodes = nodes.map((node: Node) => ({
       ...node,
       selected: false,
+      data: {
+        ...(node.data || {}),
+      },
     }));
 
     setNodes(cleanNodes);
@@ -39,7 +42,7 @@ export const getItems = (
 export const getNewNode = ({ id, position }: getNewNodeParams): Node => {
   return {
     id,
-    type: "developmentNode",
+    type: "customNode",
     position,
     data: { label: "" },
     style: { width: "auto", height: "auto", cursor: "pointer" },
@@ -61,6 +64,34 @@ export const getNewEdge = ({
   };
 };
 
+export const removeNode = (
+  setNodes: SetNodes,
+  setEdges: SetEdges,
+  setSelectedNode?: SetSelectedNode
+) => {
+  return (id: string) => {
+    setNodes((nds) => nds.filter((n) => n.id !== id));
+    setEdges((eds) => eds.filter((e) => e.source !== id && e.target !== id));
+    if (setSelectedNode) {
+      setSelectedNode((sn) => (sn?.id === id ? undefined : sn));
+    }
+  };
+};
+
+export const editNode = (
+  setNodes: SetNodes,
+  setEdges: SetEdges,
+  setSelectedNode?: SetSelectedNode
+) => {
+  return (id: string) => {
+    setNodes((nds) => nds.filter((n) => n.id !== id));
+    setEdges((eds) => eds.filter((e) => e.source !== id && e.target !== id));
+    if (setSelectedNode) {
+      setSelectedNode((sn) => (sn?.id === id ? undefined : sn));
+    }
+  };
+};
+
 export const resetSelected = (
   setSelectedNode: SetSelectedNode,
   setSelectedEdge: SetSelectedEdge
@@ -78,18 +109,4 @@ export const resetSelected = (
     }
   };
   return onResetSelected;
-};
-
-export const removeNode = (
-  setNodes: SetNodes,
-  setEdges: SetEdges,
-  setSelectedNode?: SetSelectedNode
-) => {
-  return (id: string) => {
-    setNodes((nds) => nds.filter((n) => n.id !== id));
-    setEdges((eds) => eds.filter((e) => e.source !== id && e.target !== id));
-    if (setSelectedNode) {
-      setSelectedNode((sn) => (sn?.id === id ? undefined : sn));
-    }
-  };
 };

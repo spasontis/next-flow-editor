@@ -1,6 +1,5 @@
 .node {
   display: inline-block;
-  position: relative;
   width: 150px;
   border: var(--border-1) solid var(--border-color-1);
   border-radius: var(--border-radius-4);
@@ -9,23 +8,6 @@
   background-color: var(--background-color-1);
   padding-block: var(--space-16);
   padding-inline: var(--space-12);
-}
-
-.delete {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  font-size: 6px;
-  background-color: var(--background-color-3);
-  border: none;
-  cursor: pointer;
-  padding: 2px 4px;
-  border-radius: 4px;
-
-  &:hover {
-    color: var(--danger, #ff5555);
-    background-color: var(--background-color-1);
-  }
 }
 
 .selected {
@@ -42,14 +24,9 @@
 
   &:focus {
     outline: none;
-    border-color: var(--border-color-2);
   }
 
   &::placeholder {
     color: var(--content-1);
   }
-}
-
-.border {
-  border: var(--border-1) solid var(--border-color-1);
 }
