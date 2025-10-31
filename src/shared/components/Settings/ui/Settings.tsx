@@ -62,22 +62,70 @@ export const Settings = ({
               <div className={styles.option}>
                 {handlesOpen && (
                   <div className={styles.handles}>
-                    <div>left</div>
-                    <div>
+                    <button
+                      className={clsx(
+                        styles.handle,
+                        styles.h_handles,
+                        data.handles?.left && styles.active
+                      )}
+                      onClick={() =>
+                        data.onHandlesChange?.(id, {
+                          ...data.handles,
+                          left: !data.handles?.left,
+                        })
+                      }
+                    >
+                      <div>left</div>
                       <ArrowBigLeft width={12} height={12} />
-                    </div>
-                    <div className={styles.vhandles}>
-                      <div>
+                    </button>
+                    <div className={styles.v_handles}>
+                      <button
+                        className={clsx(
+                          styles.handle,
+                          data.handles?.top && styles.active
+                        )}
+                        onClick={() =>
+                          data.onHandlesChange?.(id, {
+                            ...data.handles,
+                            top: !data.handles?.top,
+                          })
+                        }
+                      >
                         <div>top</div>
                         <ArrowBigUp width={12} height={12} />
-                      </div>
-                      <div>
+                      </button>
+                      <button
+                        className={clsx(
+                          styles.handle,
+                          data.handles?.bottom && styles.active
+                        )}
+                        onClick={() =>
+                          data.onHandlesChange?.(id, {
+                            ...data.handles,
+                            bottom: !data.handles?.bottom,
+                          })
+                        }
+                      >
                         <ArrowBigDown width={12} height={12} />
                         <div>bottom</div>
-                      </div>
+                      </button>
                     </div>
-                    <ArrowBigRight width={12} height={12} />
-                    <div>right</div>
+                    <button
+                      className={clsx(
+                        styles.handle,
+                        styles.h_handles,
+                        data.handles?.right && styles.active
+                      )}
+                      onClick={() =>
+                        data.onHandlesChange?.(id, {
+                          ...data.handles,
+                          right: !data.handles?.right,
+                        })
+                      }
+                    >
+                      <ArrowBigRight width={12} height={12} />
+                      <div>right</div>
+                    </button>
                   </div>
                 )}
               </div>

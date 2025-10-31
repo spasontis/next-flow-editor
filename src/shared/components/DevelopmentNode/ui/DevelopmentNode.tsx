@@ -3,6 +3,7 @@ import { Handle, Position } from "@xyflow/react";
 import { Settings } from "@/shared/components/Settings";
 
 import { DevelopmentNodeData } from "../types";
+import { DEFAULT_HANDLES } from "@/features/DevelopmentFlow/constants/handles";
 
 import clsx from "clsx";
 import styles from "./DevelopmentNode.module.css";
@@ -20,6 +21,8 @@ export const DevelopmentNode = ({
     data.onChange?.(id, e.target.value);
   };
 
+  const handles = { ...DEFAULT_HANDLES, ...(data.handles || {}) };
+
   return (
     <div className={clsx(styles.node, selected && styles.selected)}>
       {selected && <Settings id={id} data={data} />}
@@ -30,9 +33,10 @@ export const DevelopmentNode = ({
         onChange={handleChange}
         value={data.label}
       />
-      {data.handles?.map((handle) => (
-        <Handle key={handle.id} type={handle.type} position={Position.Top} />
-      ))}
+      {handles.top && <Handle type="target" position={Position.Top} />}
+      {handles.bottom && <Handle type="source" position={Position.Bottom} />}
+      {handles.left && <Handle type="source" position={Position.Left} />}
+      {handles.right && <Handle type="source" position={Position.Right} />}
     </div>
   );
 };
