@@ -15,7 +15,7 @@
   font-size: 6px;
 }
 
-.open {
+.pref {
   border: var(--border-1) solid transparent;
   border-radius: 1px;
 
@@ -72,6 +72,7 @@
 .label {
   color: var(--content-1);
 }
+
 .close {
   border: var(--border-1) solid transparent;
   border-radius: 1px;
@@ -123,6 +124,9 @@
   display: flex;
   align-items: center;
   text-align: center;
+}
+.opened {
+  background-color: var(--base-25);
 }
 
 .h_handles {

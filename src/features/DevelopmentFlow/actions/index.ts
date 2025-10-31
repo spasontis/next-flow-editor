@@ -8,7 +8,6 @@ import {
   SetSelectedEdge,
   SetSelectedNode,
 } from "@/shared/types";
-import { DEFAULT_HANDLES } from "../constants/handles";
 
 export const getItems = (
   setNodes: SetNodes,
@@ -24,9 +23,6 @@ export const getItems = (
       selected: false,
       data: {
         ...(node.data || {}),
-        handles:
-          (node.data as unknown as { handles?: typeof DEFAULT_HANDLES })
-            .handles || DEFAULT_HANDLES,
       },
     }));
 
@@ -48,7 +44,7 @@ export const getNewNode = ({ id, position }: getNewNodeParams): Node => {
     id,
     type: "customNode",
     position,
-    data: { label: "", handles: DEFAULT_HANDLES },
+    data: { label: "" },
     style: { width: "auto", height: "auto", cursor: "pointer" },
     origin: [0.5, 0.0],
   };
@@ -113,32 +109,4 @@ export const resetSelected = (
     }
   };
   return onResetSelected;
-};
-
-export const updateNodeHandles = (
-  setNodes: SetNodes,
-  setEdges?: SetEdges,
-  getEdges?: () => Edge[]
-) => {
-  return (
-    id: string,
-    handles: { top: boolean; bottom: boolean; left: boolean; right: boolean }
-  ) => {
-    setNodes((nds) => {
-      const newNodes = nds.map((node) =>
-        node.id === id ? { ...node, data: { ...node.data, handles } } : node
-      );
-      // persist change immediately (if edges getter available use it)
-      try {
-        const edges = getEdges ? getEdges() : [];
-        localStorage.setItem(
-          "myFlowData",
-          JSON.stringify({ nodes: newNodes, edges })
-        );
-      } catch {
-        /* ignore storage errors */
-      }
-      return newNodes;
-    });
-  };
 };

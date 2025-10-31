@@ -25,7 +25,7 @@ export const Settings = ({
     <>
       <div className={styles.header}>
         <button
-          className={styles.open}
+          className={styles.pref}
           onClick={() => setMenuOpen((prev) => !prev)}
         >
           <Settings2 width={10} height={8} />
@@ -53,7 +53,7 @@ export const Settings = ({
             <div className={styles.menu}>
               <div className={styles.controls}>
                 <button
-                  className={styles.control}
+                  className={clsx(styles.control, handlesOpen && styles.opened)}
                   onClick={() => {
                     setHandlesOpen(true);
                   }}
@@ -68,46 +68,18 @@ export const Settings = ({
                       className={clsx(
                         styles.handle,
                         styles.h_handles,
-                        data.handles?.left && styles.active
+                        styles.active
                       )}
-                      onClick={() =>
-                        data.onHandlesChange?.(id, {
-                          ...data.handles,
-                          left: !data.handles?.left,
-                        })
-                      }
                     >
                       <div>left</div>
                       <ArrowBigLeft width={12} height={12} />
                     </button>
                     <div className={styles.v_handles}>
-                      <button
-                        className={clsx(
-                          styles.handle,
-                          data.handles?.top && styles.active
-                        )}
-                        onClick={() =>
-                          data.onHandlesChange?.(id, {
-                            ...data.handles,
-                            top: !data.handles?.top,
-                          })
-                        }
-                      >
+                      <button className={styles.handle}>
                         <div>top</div>
                         <ArrowBigUp width={12} height={12} />
                       </button>
-                      <button
-                        className={clsx(
-                          styles.handle,
-                          data.handles?.bottom && styles.active
-                        )}
-                        onClick={() =>
-                          data.onHandlesChange?.(id, {
-                            ...data.handles,
-                            bottom: !data.handles?.bottom,
-                          })
-                        }
-                      >
+                      <button className={styles.handle}>
                         <ArrowBigDown width={12} height={12} />
                         <div>bottom</div>
                       </button>
@@ -116,14 +88,8 @@ export const Settings = ({
                       className={clsx(
                         styles.handle,
                         styles.h_handles,
-                        data.handles?.right && styles.active
+                        styles.active
                       )}
-                      onClick={() =>
-                        data.onHandlesChange?.(id, {
-                          ...data.handles,
-                          right: !data.handles?.right,
-                        })
-                      }
                     >
                       <ArrowBigRight width={12} height={12} />
                       <div>right</div>

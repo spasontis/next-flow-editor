@@ -15,12 +15,7 @@ import "@xyflow/react/dist/style.css";
 
 import { DevTools } from "@/widgets/DevTools";
 
-import {
-  getItems,
-  resetSelected,
-  removeNode,
-  updateNodeHandles,
-} from "../actions";
+import { getItems, resetSelected, removeNode } from "../actions";
 import { nodeOrigin, nodeTypes } from "../constants";
 import { useFlowConnect, useFlowConnectEnd, useNodeDataChange } from "../hooks";
 
@@ -47,11 +42,6 @@ export const DevelopmentFlow = () => {
 
   const handleNodeRemove = removeNode(setNodes, setEdges, setSelectedNode);
   const handleNodeLabelChange = useNodeDataChange(setNodes);
-  const handleNodeHandlesChange = updateNodeHandles(
-    setNodes,
-    setEdges,
-    () => edges
-  );
 
   const onClick = resetSelected(setSelectedNode, setSelectedEdge);
 
@@ -61,7 +51,6 @@ export const DevelopmentFlow = () => {
       ...node.data,
       onChange: handleNodeLabelChange,
       onRemove: handleNodeRemove,
-      onHandlesChange: handleNodeHandlesChange,
     },
   }));
 
