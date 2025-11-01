@@ -43,11 +43,10 @@ export const Settings = ({
               handles
             </button>
           </div>
-          <div className={styles.content}>
-            {handlesOpen && (
-              <Handles id={id} data={data} setMenuOpen={setMenuOpen} />
-            )}
-          </div>
+
+          {handlesOpen && (
+            <Handles id={id} data={data} setMenuOpen={setMenuOpen} />
+          )}
         </div>
       </div>
     </div>
