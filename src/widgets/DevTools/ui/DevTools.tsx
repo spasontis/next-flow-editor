@@ -40,12 +40,12 @@ export const DevTools = ({
   const [viewportLogger, setViewportLogger] = useState(false);
 
   const { toastMessage, toastColor, withToast } = useShowToast();
-  const saveFlow = useFlowSave({ nodes, edges });
+  const { onSave, onDownload } = useFlowSave({ nodes, edges });
   const restoreFlow = useFlowRestore(setNodes, setEdges);
   const changeEdgeStyle = useEdgeChange(selectedEdge, setEdges);
   const removeNode = useNodeRemove(selectedNode, setNodes, setEdges);
 
-  const onSaveFlow = withToast(saveFlow, "Success saved", "green");
+  const onSaveFlow = withToast(onSave, "Success saved", "green");
   const onRestoreFlow = withToast(restoreFlow, "Flow restored", "red");
   const onRemoveNode = withToast(removeNode, "Node removed", "red");
   const onChangeEdge = withToast(changeEdgeStyle, "Edge changed", "default");
@@ -81,6 +81,12 @@ export const DevTools = ({
             onClick={onSaveFlow}
           >
             Save
+          </button>
+          <button
+            className={clsx(styles.button, styles.green)}
+            onClick={onDownload}
+          >
+            Dowload
           </button>
           <button
             className={clsx(styles.button, styles.red)}

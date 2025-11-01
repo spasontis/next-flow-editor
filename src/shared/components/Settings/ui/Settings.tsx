@@ -94,6 +94,20 @@ export const Settings = ({
                       <ArrowBigRight width={12} height={12} />
                       <div>right</div>
                     </button>
+                    <button
+                      className={styles.changeType}
+                      onClick={() => {
+                        const current = data.nodeType || "customNodeV";
+                        const next =
+                          current === "customNodeV"
+                            ? "customNodeH"
+                            : "customNodeV";
+                        data.onTypeChange?.(id, next);
+                        setMenuOpen(false);
+                      }}
+                    >
+                      change type
+                    </button>
                   </div>
                 )}
               </div>

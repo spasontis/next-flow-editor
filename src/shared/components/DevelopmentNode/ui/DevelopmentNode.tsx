@@ -9,7 +9,7 @@ import { DevelopmentNodeData } from "../types";
 import clsx from "clsx";
 import styles from "./DevelopmentNode.module.css";
 
-const DevelopmentNode = ({
+const Input = ({
   id,
   data,
   selected,
@@ -23,16 +23,13 @@ const DevelopmentNode = ({
   };
 
   return (
-    <>
-      {selected && <Settings id={id} data={data} />}
-      <input
-        className={clsx(styles.input, selected && styles.border)}
-        type="text"
-        placeholder={`Node ${id}`}
-        onChange={handleChange}
-        value={data.label}
-      />
-    </>
+    <input
+      className={clsx(styles.input, selected && styles.border)}
+      type="text"
+      placeholder={`Node ${id}`}
+      onChange={handleChange}
+      value={data.label}
+    />
   );
 };
 
@@ -47,7 +44,8 @@ export const DevelopmentNodeH = ({
 }) => {
   return (
     <div className={clsx(styles.node, selected && styles.selected)}>
-      <DevelopmentNode id={id} data={data} />
+      {selected && <Settings id={id} data={data} />}
+      <Input id={id} data={data} />
       <Handle type="target" position={Position.Left} />
       <Handle type="source" position={Position.Right} />
     </div>
@@ -65,7 +63,9 @@ export const DevelopmentNodeV = ({
 }) => {
   return (
     <div className={clsx(styles.node, selected && styles.selected)}>
-      <DevelopmentNode id={id} data={data} />
+      {" "}
+      {selected && <Settings id={id} data={data} />}
+      <Input id={id} data={data} />
       <Handle type="target" position={Position.Top} />
       <Handle type="source" position={Position.Bottom} />
     </div>

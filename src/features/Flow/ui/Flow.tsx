@@ -11,11 +11,10 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 
-import { DefaultNode } from "@/shared/components/DefaultNode";
 import { Edge, Node } from "@/shared/types";
 
 import { getItems } from "../actions";
-import { nodeOrigin } from "../constants";
+import { nodeOrigin, nodeTypes } from "../constants";
 
 import styles from "./Flow.module.css";
 import Link from "next/link";
@@ -27,10 +26,6 @@ export const Flow = () => {
 
   const [nodes, setNodes] = useNodesState<Node>([]);
   const [edges, setEdges] = useEdgesState<Edge>([]);
-
-  const nodeTypes = {
-    customNode: DefaultNode,
-  };
 
   useEffect(() => getItems(setNodes, setEdges), [setNodes, setEdges]);
 

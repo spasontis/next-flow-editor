@@ -51,6 +51,10 @@ export const DevelopmentFlow = () => {
       ...node.data,
       onChange: handleNodeLabelChange,
       onRemove: handleNodeRemove,
+      onTypeChange: (id: string, type: string) => {
+        setNodes((nds) => nds.map((n) => (n.id === id ? { ...n, type } : n)));
+      },
+      nodeType: node.type,
     },
   }));
 
