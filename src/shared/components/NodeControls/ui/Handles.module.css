@@ -1,0 +1,19 @@
+.handles {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.h_handles {
+  display: flex;
+}
+
+.v_handles {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.active {
+  color: var(--primary);
+}

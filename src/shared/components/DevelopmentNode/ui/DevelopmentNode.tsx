@@ -2,11 +2,11 @@
 
 import { Handle, Position } from "@xyflow/react";
 
-import { Settings } from "@/shared/components/Settings";
-
+import { NodeControls } from "@/shared/components/NodeControls";
 import { DevelopmentNodeData } from "../types";
 
 import clsx from "clsx";
+
 import styles from "./DevelopmentNode.module.css";
 
 const Input = ({
@@ -44,7 +44,7 @@ export const DevelopmentNodeH = ({
 }) => {
   return (
     <div className={clsx(styles.node, selected && styles.selected)}>
-      {selected && <Settings id={id} data={data} />}
+      {selected && <NodeControls id={id} data={data} />}
       <Input id={id} data={data} />
       <Handle type="target" position={Position.Left} />
       <Handle type="source" position={Position.Right} />
@@ -63,8 +63,7 @@ export const DevelopmentNodeV = ({
 }) => {
   return (
     <div className={clsx(styles.node, selected && styles.selected)}>
-      {" "}
-      {selected && <Settings id={id} data={data} />}
+      {selected && <NodeControls id={id} data={data} />}
       <Input id={id} data={data} />
       <Handle type="target" position={Position.Top} />
       <Handle type="source" position={Position.Bottom} />
