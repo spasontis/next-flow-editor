@@ -8,7 +8,6 @@ import { useFlowRestore, useFlowSave, useEdgeChange } from "../hooks";
 
 import { EdgeControls } from "./EdgeControls";
 import { ViewportLogger } from "./ViewPortLogger";
-import { NodeInspector } from "./NodeInspector";
 
 import Link from "next/link";
 import clsx from "clsx";
@@ -29,7 +28,6 @@ export const DevTools = ({
   setNodes: SetNodes;
   setEdges: SetEdges;
 }) => {
-  const [nodeInspector, setNodeInspector] = useState(false);
   const [viewportLogger, setViewportLogger] = useState(false);
 
   const { toastMessage, toastColor, withToast } = useShowToast();
@@ -52,9 +50,6 @@ export const DevTools = ({
   const onRestoreFlow = withToast(restoreFlow, "Flow restored", "red");
   const onChangeEdge = withToast(changeEdgeStyle, "Edge changed", "default");
 
-  const onNodeInspector = () => {
-    setNodeInspector((prev) => !prev);
-  };
   const onViewPortLogger = () => {
     setViewportLogger((prev) => !prev);
   };
@@ -73,9 +68,6 @@ export const DevTools = ({
             selectedEdge={selectedEdge}
             onChangeEdge={onChangeEdge}
           />
-          <button className={styles.button} onClick={onNodeInspector}>
-            NodeInspector
-          </button>
           <button className={styles.button} onClick={onViewPortLogger}>
             ViewPort
           </button>
@@ -99,14 +91,11 @@ export const DevTools = ({
             Restore
           </button>
         </div>
-
         <Link href="/flow" className={styles.button}>
           Flow
         </Link>
       </Panel>
-
       {viewportLogger && <ViewportLogger />}
-      {nodeInspector && <NodeInspector />}
       <Toaster toastMessage={toastMessage} toastColor={toastColor} />
     </>
   );
