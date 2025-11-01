@@ -3,7 +3,6 @@ import { Settings2, X } from "lucide-react";
 
 import { DevelopmentNodeData } from "@/shared/components/DevelopmentNode";
 import { Settings } from "./Settings";
-
 import styles from "./NodeControls.module.css";
 
 export const NodeControls = ({

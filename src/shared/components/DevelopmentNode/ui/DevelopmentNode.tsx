@@ -3,6 +3,7 @@
 import { Handle, Position } from "@xyflow/react";
 
 import { NodeControls } from "@/shared/components/NodeControls";
+
 import { DevelopmentNodeData } from "../types";
 
 import clsx from "clsx";
@@ -54,6 +55,7 @@ export const DevelopmentNodeH = ({
 
 export const DevelopmentNodeV = ({
   id,
+
   data,
   selected,
 }: {

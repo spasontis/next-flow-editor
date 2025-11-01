@@ -3,6 +3,8 @@ import { X } from "lucide-react";
 import clsx from "clsx";
 
 import { DevelopmentNodeData } from "@/shared/components/DevelopmentNode";
+
+import { Data } from "./Data";
 import { Handles } from "./Handles";
 
 import styles from "./Settings.module.css";
@@ -16,10 +18,17 @@ export const Settings = ({
   data: DevelopmentNodeData;
   setMenuOpen: (open: boolean) => void;
 }) => {
-  const [handlesOpen, setHandlesOpen] = useState(true);
+  const [dataOpen, setDataOpen] = useState(true);
+  const [handlesOpen, setHandlesOpen] = useState(false);
 
-  const onClick = () => {
+  const onClickData = () => {
+    setDataOpen(true);
+    setHandlesOpen(false);
+  };
+
+  const onClickHandles = () => {
     setHandlesOpen(true);
+    setDataOpen(false);
   };
 
   return (
@@ -37,13 +46,20 @@ export const Settings = ({
         <div className={styles.menu}>
           <div className={styles.controls}>
             <button
+              className={clsx(styles.control, dataOpen && styles.opened)}
+              onClick={onClickData}
+            >
+              data
+            </button>
+            <button
               className={clsx(styles.control, handlesOpen && styles.opened)}
-              onClick={onClick}
+              onClick={onClickHandles}
             >
               handles
             </button>
           </div>
 
+          {dataOpen && <Data id={id} />}
           {handlesOpen && (
             <Handles id={id} data={data} setMenuOpen={setMenuOpen} />
           )}
