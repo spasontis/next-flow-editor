@@ -42,7 +42,7 @@ export const getItems = (
 export const getNewNode = ({ id, position }: getNewNodeParams): Node => {
   return {
     id,
-    type: "customNode",
+    type: "customNodeH",
     position,
     data: { label: "" },
     style: { width: "auto", height: "auto", cursor: "pointer" },

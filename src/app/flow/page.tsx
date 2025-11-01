@@ -1,5 +1,5 @@
-import { FlowPage } from "@/shared/pages/flow";
+import { Flow } from "@/features/Flow";
 
-export default function Flow() {
-  return <FlowPage />;
+export default function FlowPage() {
+  return <Flow />;
 }
