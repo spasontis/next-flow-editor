@@ -4,15 +4,9 @@ import { Panel } from "@xyflow/react";
 import { Toaster, useShowToast } from "@/shared/components/Toaster";
 import { Node, Edge, SetEdges, SetNodes } from "@/shared/types";
 
-import {
-  useFlowRestore,
-  useFlowSave,
-  useEdgeChange,
-  useNodeRemove,
-} from "../hooks";
+import { useFlowRestore, useFlowSave, useEdgeChange } from "../hooks";
 
 import { EdgeControls } from "./EdgeControls";
-import { NodeControls } from "./NodeControls";
 import { ViewportLogger } from "./ViewPortLogger";
 import { NodeInspector } from "./NodeInspector";
 
@@ -24,7 +18,6 @@ import styles from "./DevTools.module.css";
 export const DevTools = ({
   nodes,
   edges,
-  selectedNode,
   selectedEdge,
   setNodes,
   setEdges,
@@ -43,11 +36,20 @@ export const DevTools = ({
   const { onSave, onDownload } = useFlowSave({ nodes, edges });
   const restoreFlow = useFlowRestore(setNodes, setEdges);
   const changeEdgeStyle = useEdgeChange(selectedEdge, setEdges);
-  const removeNode = useNodeRemove(selectedNode, setNodes, setEdges);
 
+  const onAdd = () => {
+    const newNode: Node = {
+      id: (nodes.length + 1).toString(),
+      position: { x: 100, y: 100 },
+      type: "customNodeV",
+      data: { label: `Node ${nodes.length + 1}` },
+    };
+    setNodes((nds) => nds.concat(newNode));
+  };
+
+  const onAddNode = withToast(onAdd, "Add new node", "green");
   const onSaveFlow = withToast(onSave, "Success saved", "green");
   const onRestoreFlow = withToast(restoreFlow, "Flow restored", "red");
-  const onRemoveNode = withToast(removeNode, "Node removed", "red");
   const onChangeEdge = withToast(changeEdgeStyle, "Edge changed", "default");
 
   const onNodeInspector = () => {
@@ -61,13 +63,15 @@ export const DevTools = ({
     <>
       <Panel position="top-right" className={styles.panel}>
         <div className={styles.devtools}>
+          <button
+            className={clsx(styles.button, styles.green)}
+            onClick={onAddNode}
+          >
+            Add
+          </button>
           <EdgeControls
             selectedEdge={selectedEdge}
             onChangeEdge={onChangeEdge}
-          />
-          <NodeControls
-            selectedNode={selectedNode}
-            onRemoveNode={onRemoveNode}
           />
           <button className={styles.button} onClick={onNodeInspector}>
             NodeInspector
