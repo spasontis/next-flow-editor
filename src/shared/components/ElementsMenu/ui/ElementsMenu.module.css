@@ -1,0 +1,28 @@
+.menu {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: var(--border-1) solid var(--border-color-1);
+  padding: var(--space-2);
+}
+.elements {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.element {
+  width: 220px;
+  border: var(--border-1) solid transparent;
+  border-radius: var(--border-radius-4);
+  padding: var(--space-2);
+  opacity: 0.7;
+
+  &:hover {
+    opacity: 1;
+    border-color: var(--border-2);
+  }
+}
