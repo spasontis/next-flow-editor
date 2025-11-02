@@ -40,9 +40,9 @@ export const DevelopmentFlow = () => {
     idRef,
   });
 
-  const handleNodeRemove = removeNode(setNodes, setEdges, setSelectedNode);
   const handleNodeLabelChange = useNodeDataChange(setNodes);
 
+  const handleNodeRemove = removeNode(setNodes, setEdges, setSelectedNode);
   const onClick = resetSelected(setSelectedNode, setSelectedEdge);
 
   const developmentNodes = nodes.map((node) => ({

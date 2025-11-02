@@ -4,8 +4,8 @@ import clsx from "clsx";
 
 import { DevelopmentNodeData } from "@/shared/components/DevelopmentNode";
 
-import { Data } from "./Data";
-import { Handles } from "./Handles";
+import { DataControl } from "./DataControl";
+import { HandlesControl } from "./HandlesControl";
 
 import styles from "./Settings.module.css";
 
@@ -59,9 +59,9 @@ export const Settings = ({
             </button>
           </div>
 
-          {dataOpen && <Data id={id} />}
+          {dataOpen && <DataControl id={id} />}
           {handlesOpen && (
-            <Handles id={id} data={data} setMenuOpen={setMenuOpen} />
+            <HandlesControl id={id} data={data} setMenuOpen={setMenuOpen} />
           )}
         </div>
       </div>

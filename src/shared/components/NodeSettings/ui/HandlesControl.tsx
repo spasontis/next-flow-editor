@@ -9,9 +9,9 @@ import { DevelopmentNodeData } from "@/shared/components/DevelopmentNode";
 
 import clsx from "clsx";
 
-import styles from "./Handles.module.css";
+import styles from "./HandlesControl.module.css";
 
-export const Handles = ({
+export const HandlesControl = ({
   id,
   data,
   setMenuOpen: setMenuOpen,
