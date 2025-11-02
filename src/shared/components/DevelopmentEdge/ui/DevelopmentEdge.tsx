@@ -2,8 +2,9 @@ import {
   BaseEdge,
   EdgeLabelRenderer,
   getBezierPath,
-  useReactFlow,
+  useStore,
 } from "@xyflow/react";
+import { EdgeSettings } from "../../EdgeSettings/ui/EdgeSettings";
 
 export const DevelopmentEdge = ({
   id,
@@ -19,7 +20,10 @@ export const DevelopmentEdge = ({
   targetY: number;
   onChangeEdge?: () => void;
 }) => {
-  const { setEdges } = useReactFlow();
+  const isSelected = useStore((state) =>
+    state.edges.some((e) => e.id === id && e.selected)
+  );
+
   const [edgePath, labelX, labelY] = getBezierPath({
     sourceX,
     sourceY,
@@ -34,35 +38,19 @@ export const DevelopmentEdge = ({
         path={edgePath}
         style={{ strokeLinecap: "round", strokeLinejoin: "round" }}
       />
-      <EdgeLabelRenderer>
-        <div
-          style={{
-            position: "absolute",
-            transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
-            pointerEvents: "all",
-          }}
-        >
-          <button
-            className="nodrag nopan"
-            onClick={() => {
-              setEdges((es) => es.filter((e) => e.id !== id));
+      {isSelected && (
+        <EdgeLabelRenderer>
+          <div
+            style={{
+              position: "absolute",
+              transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
+              pointerEvents: "all",
             }}
           >
-            delete
-          </button>
-          <button
-            onClick={() =>
-              setEdges((eds) =>
-                eds.map((e) =>
-                  e.id === id ? { ...e, animated: !Boolean(e.animated) } : e
-                )
-              )
-            }
-          >
-            animated
-          </button>
-        </div>
-      </EdgeLabelRenderer>
+            <EdgeSettings id={id} />
+          </div>
+        </EdgeLabelRenderer>
+      )}
     </>
   );
 };

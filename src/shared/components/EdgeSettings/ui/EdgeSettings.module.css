@@ -1,0 +1,48 @@
+.settings {
+  background: var(--base-300);
+  border: 1px solid var(--base-50);
+  border-radius: 4px;
+  width: 80px;
+}
+
+.header {
+  display: flex;
+  border-bottom: var(--border-1) solid var(--border-color-1);
+  align-items: center;
+  justify-content: space-between;
+  font-size: 8px;
+}
+
+.label {
+  color: var(--content-1);
+}
+
+.button {
+  display: flex;
+  align-items: center;
+}
+
+.close {
+  border: var(--border-1) solid transparent;
+  border-radius: 1px;
+
+  &:hover {
+    color: var(--white);
+    background-color: var(--error);
+  }
+}
+
+.content {
+  padding: var(--space-4);
+  font-size: 8px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.checkbox {
+  width: 8px;
+}
