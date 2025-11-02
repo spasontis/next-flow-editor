@@ -18,8 +18,8 @@ export const HorizontalNode = ({
     <div className={clsx(styles.node, selected && styles.selected)}>
       {selected && <NodeSettings id={id} data={data} />}
       <DevelopmentNodeBase id={id} data={data} />
-      <Handle type="target" position={Position.Right} />
-      <Handle type="source" position={Position.Left} />
+      <Handle type="target" position={Position.Left} />
+      <Handle type="source" position={Position.Right} />
     </div>
   );
 };

@@ -1,31 +1,27 @@
 import { useState } from "react";
 import { Panel } from "@xyflow/react";
 
+import { ElementsMenu } from "@/shared/components/ElementsMenu";
 import { Toaster, useShowToast } from "@/shared/components/Toaster";
 import { Node, Edge, SetEdges, SetNodes } from "@/shared/types";
 
-import { useFlowRestore, useFlowSave, useEdgeChange } from "../hooks";
+import { useFlowRestore, useFlowSave } from "../hooks";
 
-import { EdgeControls } from "./EdgeControls";
 import { ViewportLogger } from "./ViewPortLogger";
 
 import Link from "next/link";
 import clsx from "clsx";
 
 import styles from "./DevTools.module.css";
-import { ElementsMenu } from "@/shared/components/ElementsMenu";
 
 export const DevTools = ({
   nodes,
   edges,
-  selectedEdge,
   setNodes,
   setEdges,
 }: {
   nodes: Node[];
   edges: Edge[];
-  selectedNode?: Node;
-  selectedEdge?: Edge;
   setNodes: SetNodes;
   setEdges: SetEdges;
 }) => {
@@ -34,11 +30,9 @@ export const DevTools = ({
   const { toastMessage, toastColor, withToast } = useShowToast();
   const { onSave, onDownload } = useFlowSave({ nodes, edges });
   const restoreFlow = useFlowRestore(setNodes, setEdges);
-  const changeEdgeStyle = useEdgeChange(selectedEdge, setEdges);
 
   const onSaveFlow = withToast(onSave, "Success saved", "green");
   const onRestoreFlow = withToast(restoreFlow, "Flow restored", "red");
-  const onChangeEdge = withToast(changeEdgeStyle, "Edge changed", "default");
 
   const onViewPortLogger = () => {
     setViewportLogger((prev) => !prev);
@@ -48,10 +42,6 @@ export const DevTools = ({
     <>
       <Panel position="top-right" className={styles.panel}>
         <div className={styles.devtools}>
-          <EdgeControls
-            selectedEdge={selectedEdge}
-            onChangeEdge={onChangeEdge}
-          />
           <button className={styles.button} onClick={onViewPortLogger}>
             ViewPort
           </button>
