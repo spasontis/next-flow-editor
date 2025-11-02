@@ -2,7 +2,7 @@
 
 import { Handle, Position } from "@xyflow/react";
 
-import { NodeControls } from "@/shared/components/NodeControls";
+import { NodeSettings } from "@/shared/components/NodeSettings";
 
 import { DevelopmentNodeData } from "../types";
 
@@ -45,7 +45,7 @@ export const DevelopmentNodeH = ({
 }) => {
   return (
     <div className={clsx(styles.node, selected && styles.selected)}>
-      {selected && <NodeControls id={id} data={data} />}
+      {selected && <NodeSettings id={id} data={data} />}
       <Input id={id} data={data} />
       <Handle type="target" position={Position.Left} />
       <Handle type="source" position={Position.Right} />
@@ -65,7 +65,7 @@ export const DevelopmentNodeV = ({
 }) => {
   return (
     <div className={clsx(styles.node, selected && styles.selected)}>
-      {selected && <NodeControls id={id} data={data} />}
+      {selected && <NodeSettings id={id} data={data} />}
       <Input id={id} data={data} />
       <Handle type="target" position={Position.Top} />
       <Handle type="source" position={Position.Bottom} />
