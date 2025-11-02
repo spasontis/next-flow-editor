@@ -1,11 +1,11 @@
-import { Node, SetNodes } from "@/shared/types";
-import { elementsOptions } from "../constants";
-import styles from "./ElementsMenu.module.css";
 import { Panel } from "@xyflow/react";
-import clsx from "clsx";
 import { useState } from "react";
 import { Plus, X } from "lucide-react";
 
+import { Node, SetNodes } from "@/shared/types";
+import { elementsOptions } from "../constants";
+
+import styles from "./ElementsMenu.module.css";
 export const ElementsMenu = ({
   nodes,
   setNodes,

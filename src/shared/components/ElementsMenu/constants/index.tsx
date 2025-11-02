@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import vertical_node from "@/shared/assets/icons/vertical-node.png";
 import horizontal_node from "@/shared/assets/icons/horizontal-node.png";
 
@@ -10,7 +11,7 @@ export const elementsOptions = [
   {
     label: (
       <>
-        <Image src={horizontal_node} alt="vertical node" />
+        <Image src={horizontal_node} alt="horizontal node" />
       </>
     ),
     type: "h_in_out",

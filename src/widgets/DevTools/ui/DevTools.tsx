@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 import { Panel } from "@xyflow/react";
 
 import { Toaster, useShowToast } from "@/shared/components/Toaster";

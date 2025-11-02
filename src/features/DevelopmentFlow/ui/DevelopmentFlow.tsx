@@ -14,7 +14,7 @@ import "@xyflow/react/dist/style.css";
 import { DevTools } from "@/widgets/DevTools";
 
 import { getItems, resetSelected, removeNode } from "../actions";
-import { nodeOrigin, nodeTypes } from "../constants";
+import { edgeTypes, nodeOrigin, nodeTypes } from "../constants";
 import { useFlowConnect, useNodeDataChange } from "../hooks";
 
 import styles from "./DevelopmentFlow.module.css";
@@ -59,6 +59,7 @@ export const DevelopmentFlow = () => {
         nodes={developmentNodes}
         nodeTypes={nodeTypes}
         edges={edges}
+        edgeTypes={edgeTypes}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
