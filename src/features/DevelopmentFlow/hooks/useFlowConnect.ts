@@ -6,7 +6,8 @@ import { Connection, SetEdges } from "@/shared/types";
 
 export const useFlowConnect = (setEdges: SetEdges) => {
   const onConnect = useCallback(
-    (params: Connection) => setEdges((eds) => addEdge(params, eds)),
+    (params: Connection) =>
+      setEdges((eds) => addEdge({ ...params, type: "custom-edge" }, eds)),
     [setEdges]
   );
 
