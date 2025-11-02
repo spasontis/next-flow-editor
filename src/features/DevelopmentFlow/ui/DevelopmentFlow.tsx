@@ -6,10 +6,8 @@ import {
   ReactFlow,
   useNodesState,
   useEdgesState,
-  useReactFlow,
   Node,
   Edge,
-  OnConnectEnd,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 
@@ -17,7 +15,7 @@ import { DevTools } from "@/widgets/DevTools";
 
 import { getItems, resetSelected, removeNode } from "../actions";
 import { nodeOrigin, nodeTypes } from "../constants";
-import { useFlowConnect, useFlowConnectEnd, useNodeDataChange } from "../hooks";
+import { useFlowConnect, useNodeDataChange } from "../hooks";
 
 import styles from "./DevelopmentFlow.module.css";
 
@@ -31,15 +29,7 @@ export const DevelopmentFlow = () => {
   const [selectedNode, setSelectedNode] = useState<Node | undefined>(undefined);
   const [selectedEdge, setSelectedEdge] = useState<Edge | undefined>(undefined);
 
-  const { screenToFlowPosition } = useReactFlow();
   const onConnect = useFlowConnect(setEdges);
-  const onConnectEnd: OnConnectEnd = useFlowConnectEnd({
-    setNodes,
-    setEdges,
-    screenToFlowPosition,
-    idRef,
-  });
-
   const handleNodeLabelChange = useNodeDataChange(setNodes);
 
   const handleNodeRemove = removeNode(setNodes, setEdges, setSelectedNode);
@@ -72,7 +62,6 @@ export const DevelopmentFlow = () => {
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
-        onConnectEnd={onConnectEnd}
         onNodeClick={(event, node) => onClick({ node })}
         onEdgeClick={(event, edge) => onClick({ edge })}
         onPaneClick={() => onClick({})}

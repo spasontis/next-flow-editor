@@ -5,7 +5,6 @@ import clsx from "clsx";
 import { DevelopmentNodeData } from "@/shared/components/DevelopmentNode";
 
 import { DataControl } from "./DataControl";
-import { HandlesControl } from "./HandlesControl";
 
 import styles from "./Settings.module.css";
 
@@ -19,16 +18,9 @@ export const Settings = ({
   setMenuOpen: (open: boolean) => void;
 }) => {
   const [dataOpen, setDataOpen] = useState(true);
-  const [handlesOpen, setHandlesOpen] = useState(false);
 
   const onClickData = () => {
     setDataOpen(true);
-    setHandlesOpen(false);
-  };
-
-  const onClickHandles = () => {
-    setHandlesOpen(true);
-    setDataOpen(false);
   };
 
   return (
@@ -51,18 +43,9 @@ export const Settings = ({
             >
               data
             </button>
-            <button
-              className={clsx(styles.control, handlesOpen && styles.opened)}
-              onClick={onClickHandles}
-            >
-              handles
-            </button>
           </div>
 
           {dataOpen && <DataControl id={id} />}
-          {handlesOpen && (
-            <HandlesControl id={id} data={data} setMenuOpen={setMenuOpen} />
-          )}
         </div>
       </div>
     </div>

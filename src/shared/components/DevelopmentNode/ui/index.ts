@@ -1,1 +1,2 @@
-export { DevelopmentNodeH, DevelopmentNodeV } from "./DevelopmentNode";
+export { HorizontalNode } from "./HorizontalNode";
+export { VerticalNode } from "./VerticalNode";

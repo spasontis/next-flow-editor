@@ -1,2 +1,2 @@
-export { DevelopmentNodeH, DevelopmentNodeV } from "./ui";
+export { HorizontalNode, VerticalNode } from "./ui";
 export { type DevelopmentNodeData } from "./types";

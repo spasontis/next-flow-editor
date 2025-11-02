@@ -1,13 +1,13 @@
 "use client";
 
 import {
-  DevelopmentNodeV,
-  DevelopmentNodeH,
+  VerticalNode,
+  HorizontalNode,
 } from "@/shared/components/DevelopmentNode";
 
 export const nodeOrigin: [number, number] = [0.5, 0];
 
 export const nodeTypes = {
-  customNodeV: DevelopmentNodeV,
-  customNodeH: DevelopmentNodeH,
+  v_in_out: VerticalNode,
+  h_in_out: HorizontalNode,
 };
