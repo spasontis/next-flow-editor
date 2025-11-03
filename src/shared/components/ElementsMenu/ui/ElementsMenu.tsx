@@ -32,10 +32,10 @@ export const ElementsMenu = ({
       {elementsMenuOpen && (
         <div className={styles.elements}>
           {elementsOptions.map((opt) => (
-            <div key={opt.name} className={styles.label}>
+            <div key={opt.type} className={styles.label}>
               <h5>{opt.title}</h5>
               <button
-                onClick={() => onAdd({ nodes, type: opt.name, setNodes })}
+                onClick={() => onAdd({ nodes, type: opt.type, setNodes })}
                 className={styles.element}
               >
                 {opt.preview}

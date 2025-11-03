@@ -2,27 +2,27 @@
 
 import { DevelopmentEdge } from "@/shared/components/DevelopmentEdge";
 import {
-  DevelopmentNode,
-  VerticalNode,
-  VerticalNodeIn,
-  VerticalNodeOut,
-  HorizontalNode,
-  HorizontalNodeIn,
-  HorizontalNodeOut,
+  DevelopmentNodeDefault,
+  DevelopmentNodeVertical,
+  DevelopmentNodeVerticalIn,
+  DevelopmentNodeVerticalOut,
+  DevelopmentNodeHorizontal,
+  DevelopmentNodeHorizontalIn,
+  DevelopmentNodeHorizontalOut,
 } from "@/shared/components/DevelopmentNode";
 
 export const nodeOrigin: [number, number] = [0.5, 0];
 
 export const nodeTypes = {
-  base: DevelopmentNode,
-  "v-in-out": VerticalNode,
-  "v-in": VerticalNodeIn,
-  "v-out": VerticalNodeOut,
-  "h-in-out": HorizontalNode,
-  "h-in": HorizontalNodeIn,
-  "h-out": HorizontalNodeOut,
+  default: DevelopmentNodeDefault,
+  "v-in-out": DevelopmentNodeVertical,
+  "v-in": DevelopmentNodeVerticalIn,
+  "v-out": DevelopmentNodeVerticalOut,
+  "h-in-out": DevelopmentNodeHorizontal,
+  "h-in": DevelopmentNodeHorizontalIn,
+  "h-out": DevelopmentNodeHorizontalOut,
 };
 
 export const edgeTypes = {
-  "custom-edge": DevelopmentEdge,
+  default: DevelopmentEdge,
 };
