@@ -1,5 +1,5 @@
-import { Flow } from "@/features/Flow";
+import { FlowPage } from "@/pages/Flow";
 
-export default function FlowPage() {
-  return <Flow />;
+export default function Flow() {
+  return <FlowPage />;
 }
