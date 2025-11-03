@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Panel } from "@xyflow/react";
+import { Controls, Panel } from "@xyflow/react";
 
 import { ElementsMenu } from "@/shared/components/ElementsMenu";
 import { Toaster, useShowToast } from "@/shared/components/Toaster";
@@ -71,6 +71,7 @@ export const DevTools = ({
       </Panel>
       <ElementsMenu nodes={nodes} setNodes={setNodes} />
       {viewportLogger && <ViewportLogger />}
+      <Controls />
       <Toaster toastMessage={toastMessage} toastColor={toastColor} />
     </>
   );

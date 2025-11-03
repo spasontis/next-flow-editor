@@ -1,13 +1,42 @@
-.menu {
-  background-color: rgba(0, 0, 0, 0.2);
+.header {
+  display: flex;
+  align-items: center;
 }
+
+.title {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-12);
+
+  gap: 20px;
+  z-index: 100;
+}
+
+.menuOpen {
+  height: 100vh;
+  background-color: var(--background-color-1);
+}
+
 .button {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 32px;
   border: var(--border-1) solid var(--border-color-1);
   padding: var(--space-2);
 }
+
 .elements {
   display: flex;
   flex-direction: column;

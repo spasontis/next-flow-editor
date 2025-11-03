@@ -1,4 +1,3 @@
-import { Panel } from "@xyflow/react";
 import { useState } from "react";
 import { Plus, X } from "lucide-react";
 
@@ -6,6 +5,8 @@ import { Node, SetNodes } from "@/shared/types";
 import { elementsOptions } from "../constants";
 
 import styles from "./ElementsMenu.module.css";
+import { onAdd } from "../actions";
+import clsx from "clsx";
 export const ElementsMenu = ({
   nodes,
   setNodes,
@@ -14,19 +15,10 @@ export const ElementsMenu = ({
   setNodes: SetNodes;
 }) => {
   const [elementsMenuOpen, setElementsMenuOpen] = useState(false);
-  const onAdd = (type: string) => {
-    const newNode: Node = {
-      id: (nodes.length + 1).toString(),
-      position: { x: 100, y: 100 },
-      type,
-      data: { label: `Node ${nodes.length + 1}` },
-    };
-    setNodes((nds) => nds.concat(newNode));
-  };
 
   return (
-    <Panel position="top-left">
-      <div className={styles.menu}>
+    <div className={clsx(styles.menu, elementsMenuOpen && styles.menuOpen)}>
+      <div className={styles.header}>
         <button
           className={styles.button}
           onClick={() => {
@@ -35,24 +27,23 @@ export const ElementsMenu = ({
         >
           {elementsMenuOpen ? <X /> : <Plus />}
         </button>
-        {elementsMenuOpen && (
-          <div>
-            <div className={styles.elements}>
-              {elementsOptions.map((opt) => (
-                <div key={opt.type}>
-                  <h5>{opt.type}</h5>
-                  <button
-                    onClick={() => onAdd(opt.type)}
-                    className={styles.element}
-                  >
-                    {opt.label}
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+        {elementsMenuOpen && <div className={styles.title}>Elements menu</div>}
       </div>
-    </Panel>
+      {elementsMenuOpen && (
+        <div className={styles.elements}>
+          {elementsOptions.map((opt) => (
+            <div key={opt.name} className={styles.label}>
+              <h5>{opt.title}</h5>
+              <button
+                onClick={() => onAdd({ nodes, type: opt.name, setNodes })}
+                className={styles.element}
+              >
+                {opt.preview}
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 };
