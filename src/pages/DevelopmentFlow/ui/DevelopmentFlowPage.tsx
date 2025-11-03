@@ -17,9 +17,9 @@ import { getItems, removeNode } from "../actions";
 import { edgeTypes, nodeOrigin, nodeTypes } from "../constants";
 import { useFlowConnect, useNodeDataChange } from "../hooks";
 
-import styles from "./DevelopmentFlow.module.css";
+import styles from "./DevelopmentFlowPage.module.css";
 
-export const DevelopmentFlow = () => {
+export const DevelopmentFlowPage = () => {
   const idRef = useRef<number>(1);
   const reactFlowWrapper = useRef(null);
 

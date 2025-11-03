@@ -16,10 +16,10 @@ import { Edge, Node } from "@/shared/types";
 import { getItems } from "../actions";
 import { nodeOrigin, nodeTypes } from "../constants";
 
-import styles from "./Flow.module.css";
+import styles from "./FlowPage.module.css";
 import Link from "next/link";
 
-export const Flow = () => {
+export const FlowPage = () => {
   const proOptions = { hideAttribution: true };
 
   const reactFlowWrapper = useRef(null);
