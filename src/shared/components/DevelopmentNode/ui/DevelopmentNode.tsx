@@ -32,7 +32,7 @@ export const DevelopmentNodeBase = ({
   );
 };
 
-export const DevelopmentNode = ({
+export const DevelopmentNodeDefault = ({
   id,
   data,
   selected,
@@ -49,7 +49,7 @@ export const DevelopmentNode = ({
   );
 };
 
-export const VerticalNode = ({
+export const DevelopmentNodeVertical = ({
   id,
   data,
   selected,
@@ -68,7 +68,7 @@ export const VerticalNode = ({
   );
 };
 
-export const VerticalNodeIn = ({
+export const DevelopmentNodeVerticalIn = ({
   id,
   data,
   selected,
@@ -86,7 +86,7 @@ export const VerticalNodeIn = ({
   );
 };
 
-export const VerticalNodeOut = ({
+export const DevelopmentNodeVerticalOut = ({
   id,
   data,
   selected,
@@ -104,7 +104,7 @@ export const VerticalNodeOut = ({
   );
 };
 
-export const HorizontalNode = ({
+export const DevelopmentNodeHorizontal = ({
   id,
   data,
   selected,
@@ -123,7 +123,7 @@ export const HorizontalNode = ({
   );
 };
 
-export const HorizontalNodeIn = ({
+export const DevelopmentNodeHorizontalIn = ({
   id,
   data,
   selected,
@@ -141,7 +141,7 @@ export const HorizontalNodeIn = ({
   );
 };
 
-export const HorizontalNodeOut = ({
+export const DevelopmentNodeHorizontalOut = ({
   id,
   data,
   selected,

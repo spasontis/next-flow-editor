@@ -1,10 +1,10 @@
 export {
-  DevelopmentNode,
-  VerticalNode,
-  VerticalNodeIn,
-  VerticalNodeOut,
-  HorizontalNode,
-  HorizontalNodeIn,
-  HorizontalNodeOut,
+  DevelopmentNodeDefault,
+  DevelopmentNodeVertical,
+  DevelopmentNodeVerticalIn,
+  DevelopmentNodeVerticalOut,
+  DevelopmentNodeHorizontal,
+  DevelopmentNodeHorizontalIn,
+  DevelopmentNodeHorizontalOut,
 } from "./ui";
 export { type DevelopmentNodeData } from "./types";

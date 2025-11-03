@@ -12,39 +12,39 @@ import h_out from "@/shared/assets/icons/h-out.png";
 
 export const elementsOptions = [
   {
-    name: "base",
+    type: "default",
     title: "Base Node",
     preview: <Image src={base} alt="vertical node" />,
   },
 
   {
-    name: "v-in-out",
+    type: "v-in-out",
     title: "Vertical Node",
     preview: <Image src={v_in_out} alt="vertical node" />,
   },
   {
-    name: "v-in",
+    type: "v-in",
     title: "Vertical In Node",
     preview: <Image src={v_in} alt="vertical node in" />,
   },
   {
-    name: "v-out",
+    type: "v-out",
     title: "Vertical Out Node",
     preview: <Image src={v_out} alt="vertical node out" />,
   },
 
   {
-    name: "h-in-out",
+    type: "h-in-out",
     title: "Hotizontal Node",
     preview: <Image src={h_in_out} alt="horizontal node" />,
   },
   {
-    name: "h-in",
+    type: "h-in",
     title: "Hotizontal In Node",
     preview: <Image src={h_in} alt="horizontal node in" />,
   },
   {
-    name: "h-out",
+    type: "h-out",
     title: "Hotizontal Out Node",
     preview: <Image src={h_out} alt="horizontal node out" />,
   },
