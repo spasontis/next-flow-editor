@@ -13,7 +13,7 @@ export const onAdd = ({
     id: (nodes.length + 1).toString(),
     position: { x: 100, y: 100 },
     type,
-    data: { label: `Node ${nodes.length + 1}` },
+    data: { label: "" },
   };
   setNodes((nds) => nds.concat(newNode));
 };

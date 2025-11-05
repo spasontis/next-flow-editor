@@ -10,7 +10,7 @@ export const DataControl = ({ id }: { id: string }) => {
     <div className={styles.content}>
       <div key={id}>
         <div>id: {node?.id}</div>
-        <div>data: {JSON.stringify(node?.data.label)}</div>
+        <div>label: {JSON.stringify(node?.data.label)}</div>
         <div>type: {node?.type || "undefined"}</div>
         <div>
           position: {node?.position.x.toFixed(1)}, {node?.position.y.toFixed(1)}

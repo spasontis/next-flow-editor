@@ -20,7 +20,7 @@ export const ElementsMenu = ({
     <div className={clsx(styles.menu, elementsMenuOpen && styles.menuOpen)}>
       <div className={styles.header}>
         <button
-          className={styles.button}
+          className={styles.close}
           onClick={() => {
             setElementsMenuOpen((prev) => !prev);
           }}
@@ -32,7 +32,7 @@ export const ElementsMenu = ({
       {elementsMenuOpen && (
         <div className={styles.elements}>
           {elementsOptions.map((opt) => (
-            <div key={opt.type} className={styles.label}>
+            <div key={opt.type}>
               <h5>{opt.title}</h5>
               <button
                 onClick={() => onAdd({ nodes, type: opt.type, setNodes })}

@@ -28,11 +28,8 @@
 }
 
 .title {
-  padding-left: var(--space-2);
-}
-
-.label {
   color: var(--content-1);
+  padding-left: var(--space-2);
 }
 
 .close {
