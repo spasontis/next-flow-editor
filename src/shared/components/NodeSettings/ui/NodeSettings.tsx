@@ -24,7 +24,7 @@ export const NodeSettings = ({
         >
           <Settings2 width={10} height={8} />
         </button>
-        <div className={styles.label}>Node {id}</div>
+        <div className={styles.label}>id: {id}</div>
         <button className={styles.remove} onClick={() => data.onRemove?.(id)}>
           <X width={8} height={8} />
         </button>
