@@ -1,10 +1,14 @@
 import React from "react";
 import { Settings, X } from "lucide-react";
 import { useState } from "react";
+import { useReactFlow } from "@xyflow/react";
+
+import { Edge } from "@/shared/types";
+import { changeAnimated, removeEdge } from "../actions";
+
+import clsx from "clsx";
 
 import styles from "./EdgeSettings.module.css";
-import { Edge, useReactFlow } from "@xyflow/react";
-import clsx from "clsx";
 
 export const EdgeSettings = ({ id }: { id: string }) => {
   const { getEdges, setEdges } = useReactFlow();
@@ -14,14 +18,9 @@ export const EdgeSettings = ({ id }: { id: string }) => {
   const currentEdge = edges.find((e: Edge) => e.id === id);
   const isAnimated = Boolean(currentEdge?.animated);
 
-  const onAnimatedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const checked = e.target.checked;
-    setEdges((eds) =>
-      eds.map((edge) =>
-        edge.id === id ? { ...edge, animated: checked } : edge
-      )
-    );
-  };
+  const onEdgeRemove = () => removeEdge(id, setEdges);
+  const onAnimatedChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    changeAnimated(id, e.target.checked, setEdges);
 
   return (
     <>
@@ -37,7 +36,7 @@ export const EdgeSettings = ({ id }: { id: string }) => {
             <div className={styles.label}>{id}</div>
             <button
               className={clsx(styles.button, styles.close)}
-              onClick={() => setSettingsOpen(false)}
+              onClick={onEdgeRemove}
             >
               <X width={8} height={8} />
             </button>
