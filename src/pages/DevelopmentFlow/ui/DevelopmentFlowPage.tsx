@@ -18,6 +18,7 @@ import { edgeTypes, nodeOrigin, nodeTypes } from "../constants";
 import { useFlowConnect, useNodeDataChange } from "../hooks";
 
 import styles from "./DevelopmentFlowPage.module.css";
+import { ElementsMenu } from "@/widgets/ElementsMenu";
 
 export const DevelopmentFlowPage = () => {
   const idRef = useRef<number>(1);
@@ -62,6 +63,7 @@ export const DevelopmentFlowPage = () => {
         fitView
         nodeOrigin={nodeOrigin}
       >
+        <ElementsMenu nodes={nodes} setNodes={setNodes} />
         <DevTools
           nodes={nodes}
           edges={edges}
