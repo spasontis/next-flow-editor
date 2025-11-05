@@ -11,7 +11,7 @@ import {
 export const nodeOrigin: [number, number] = [0.5, 0];
 
 export const nodeTypes = {
-  default: NodeDefault,
+  "default-node": NodeDefault,
   "v-in-out": NodeVertical,
   "v-in": NodeVerticalIn,
   "v-out": NodeVerticalOut,

@@ -11,11 +11,9 @@ import styles from "./DevelopmentNode.module.css";
 export const DevelopmentNodeBase = ({
   id,
   data,
-  selected,
 }: {
   id: string;
   data: DevelopmentNodeData;
-  selected?: boolean;
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     data.onChange?.(id, e.target.value);
@@ -23,7 +21,7 @@ export const DevelopmentNodeBase = ({
 
   return (
     <input
-      className={clsx(styles.input, selected && styles.border)}
+      className={styles.input}
       type="text"
       placeholder={`Node ${id}`}
       onChange={handleChange}
@@ -43,8 +41,8 @@ export const DevelopmentNodeDefault = ({
 }) => {
   return (
     <div className={clsx(styles.node, selected && styles.selected)}>
-      {selected && <NodeSettings id={id} data={data} />}
       <DevelopmentNodeBase id={id} data={data} />
+      {selected && <NodeSettings id={id} data={data} />}
     </div>
   );
 };
