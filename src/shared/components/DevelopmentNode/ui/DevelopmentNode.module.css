@@ -8,6 +8,8 @@
   font-size: 12px;
   color: var(--white);
   background-color: var(--background-color-1);
+  padding-block: var(--space-16);
+  padding-inline: var(--space-12);
 }
 
 .selected {
