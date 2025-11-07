@@ -1,6 +1,15 @@
+.layout {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  width: 1162px;
+  height: 799px;
+}
 .roadmap {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  border: 1px solid var(--border-color-1);
 }
 
 .button {

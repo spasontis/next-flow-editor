@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Controls, Panel } from "@xyflow/react";
+import { Panel } from "@xyflow/react";
 
 import { Toaster, useShowToast } from "@/shared/components/Toaster";
 import { Node, Edge, SetEdges, SetNodes } from "@/shared/types";
@@ -68,9 +68,7 @@ export const DevTools = ({
           Flow
         </Link>
       </Panel>
-
       {viewportLogger && <ViewportLogger />}
-      <Controls />
       <Toaster toastMessage={toastMessage} toastColor={toastColor} />
     </>
   );

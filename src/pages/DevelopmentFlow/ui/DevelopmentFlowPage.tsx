@@ -8,17 +8,19 @@ import {
   useEdgesState,
   Node,
   Edge,
+  Controls,
+  ReactFlowProvider,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 
 import { DevTools } from "@/widgets/DevTools";
+import { ElementsMenu } from "@/widgets/ElementsMenu";
 
 import { getItems, removeNode } from "../actions";
 import { edgeTypes, nodeOrigin, nodeTypes } from "../constants";
 import { useFlowConnect, useNodeDataChange } from "../hooks";
 
 import styles from "./DevelopmentFlowPage.module.css";
-import { ElementsMenu } from "@/widgets/ElementsMenu";
 
 export const DevelopmentFlowPage = () => {
   const idRef = useRef<number>(1);
@@ -47,31 +49,34 @@ export const DevelopmentFlowPage = () => {
   }, [setNodes, setEdges]);
 
   return (
-    <div className={styles.roadmap} ref={reactFlowWrapper}>
-      <ReactFlow
-        colorMode="dark"
-        nodes={developmentNodes}
-        nodeTypes={nodeTypes}
-        edges={edges}
-        edgeTypes={edgeTypes}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        onNodeClick={(event, node) => ({ node })}
-        onEdgeClick={(event, edge) => ({ edge })}
-        onPaneClick={() => ({})}
-        fitView
-        nodeOrigin={nodeOrigin}
-      >
-        <ElementsMenu nodes={nodes} setNodes={setNodes} />
-        <DevTools
-          nodes={nodes}
+    <ReactFlowProvider>
+      <div className={styles.roadmap} ref={reactFlowWrapper}>
+        <ReactFlow
+          colorMode="dark"
+          nodes={developmentNodes}
+          nodeTypes={nodeTypes}
           edges={edges}
-          setNodes={setNodes}
-          setEdges={setEdges}
-        />
-        <Background />
-      </ReactFlow>
-    </div>
+          edgeTypes={edgeTypes}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          onConnect={onConnect}
+          onNodeClick={(event, node) => ({ node })}
+          onEdgeClick={(event, edge) => ({ edge })}
+          onPaneClick={() => ({})}
+          fitView
+          nodeOrigin={nodeOrigin}
+        >
+          <ElementsMenu nodes={nodes} setNodes={setNodes} />
+          <DevTools
+            nodes={nodes}
+            edges={edges}
+            setNodes={setNodes}
+            setEdges={setEdges}
+          />
+          <Controls />
+          <Background />
+        </ReactFlow>
+      </div>
+    </ReactFlowProvider>
   );
 };
